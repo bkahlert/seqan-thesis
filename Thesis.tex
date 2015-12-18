@@ -1,0 +1,465 @@
+%% ----------------------------------------------------------------
+%% Thesis.tex -- MAIN FILE (the one that you compile with LaTeX)
+%% ---------------------------------------------------------------- 
+
+% Set up the document 
+\documentclass[11pt, twoside]{Thesis}  % Use the "Thesis" style, based on the ECS Thesis style by Steve Gunn
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00A0}{ }
+\usepackage[ngerman]{babel}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{multicol}
+
+%\usepackage{showframe}
+
+
+% Pages Differences, usage: \pagedifference{A}{B}, see http://tex.stackexchange.com/questions/38139/how-can-i-calculate-the-difference-of-2-counters-pageref
+\usepackage{refcount}
+\newcommand{\pagedifference}[3]{%
+  \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1}+#3\relax}
+
+%\includeonly{%
+%Sections/sec-Forschungsstand-Uberblick
+%Sections/sec-Forschungsstand-Theorien,
+%Sections/sec-Forschungsstand-Anwendung,
+%Sections/sec-Forschungsstand-Misc,
+%Sections/sec-Forschungsstand-Tools
+%Sections/sec-Forschung-PlanungVerlauf
+%Sections/sec-Forschung-Phase1,
+%Sections/sec-Forschung-Phase2,
+%Sections/sec-Forschung-Phase3,
+%Sections/sec-Forschung-Phase4,
+%Sections/sec-Ergebnisse-GT,
+%Sections/sec-Ergebnisse-Vorschlaege,
+%Sections/sec-Ergebnisse-Verbesserung,
+%Sections/sec-Ergebnisse-Validierung
+%Chapters/05_FazitAusblick
+%,Sections/sec-APIUAsrv%
+%Sections/sec-Dox%
+%Appendices/app-APIUA,
+%Appendices/app-Literatur,
+%Appendices/app-Daten,
+%Appendices/app-misc
+%}
+
+% Colors
+\usepackage{color}
+\definecolor{gray}{rgb}{0.5, 0.5, 0.5}
+\definecolor{violet}{rgb}{0.53, 0.0, 0.69}
+
+\usepackage{pdfpages}
+\graphicspath{Figures/}  % Location of the graphics files (set up for graphics to be in PDF format)
+
+%\usepackage{listings}
+\usepackage[outputdir=.texpadtmp]{minted}
+\setminted{linenos,breaklines=true,autogobble=true}
+
+
+\usepackage{float}
+\usepackage{fixltx2e} % \textsubscript
+\usepackage[framemethod=TikZ]{mdframed}
+
+
+
+
+% Chapters and Sections
+\usepackage[Rejne]{fncychap}
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\titleformat{\section}[frame]
+{\normalfont\Large\filcenter}{\thispagestyle{empty}\quad\thesection\quad}{1em}{\Large\filcenter\MakeUppercase}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\newcommand{\sectionbreak}{\cleardoublepage}
+
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\large\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]
+  {\normalfont\large\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]
+  {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+
+
+
+
+
+% allow footnotes for tables
+\usepackage{footnote}
+\makesavenoteenv{tabularx}
+\usepackage{longtable}
+\usepackage{diagbox}
+\usepackage{threeparttablex}
+\usepackage{lipsum}
+
+
+% footnotes at bottom of the page
+\usepackage[bottom]{footmisc}
+
+
+
+\usepackage{tabularx,booktabs}
+
+
+
+
+\addto\extrasngerman{%
+  \def\figureautorefname{Abbildung}%
+}
+\addto\extrasngerman{%
+  \def\tableautorefname{Tabelle}%
+}
+\addto\extrasngerman{%
+  \def\lstlistingnameautorefname{Listung}%
+}
+
+% below does not work
+\addto\captionsngerman{%
+  \renewcommand{\abstractname}{Zusammenfassung}%
+  \renewcommand{\appendixname}{Anhang}%
+  \renewcommand{\bibname}{Literaturverzeichnis}%
+  \renewcommand{\chaptername}{Kapitel}%
+ % \renewcommand{\sectionname}{Abschnitt}%
+  \renewcommand{\contentsname}{Inhaltsverzeichnis}%
+  \renewcommand{\figurename}{Abbildung}%
+  \renewcommand{\tablename}{Tabelle}%
+  \renewcommand{\alsoname}{see also}%
+  \renewcommand{\ccname}{cc}%
+  \renewcommand{\enclname}{encl}%
+  \renewcommand{\headtoname}{To}%
+  \renewcommand{\lstlistingname}{Listung}%
+  \renewcommand{\lstlistlistingname}{Listungsverzeichnis}%
+  \renewcommand{\listingscaption}{Listung}%
+  \renewcommand{\listoflistingscaption}{Listungsverzeichnis}%
+  \renewcommand{\pagename}{Page}%
+  \renewcommand{\prefacename}{Preface}%
+  \renewcommand{\proofname}{Proof}%
+  \renewcommand{\seename}{siehe}%
+}
+
+
+
+
+
+
+\hyphenation{SeqAn}
+\hyphenation{KNIME}
+
+
+
+
+
+\usepackage{apiua}
+
+
+\newmdenv[%
+skipabove=2\parskip,skipbelow=2\parskip,innermargin=4\parskip,outermargin=4\parskip,%
+roundcorner=3pt, subtitlebelowline=true,subtitleaboveline=true, subtitlebackgroundcolor=gray!30, backgroundcolor=gray!20!white, frametitle={},frametitlerule=true, frametitlebackgroundcolor=gray!30, nobreak=false]{furtherreading}
+
+\newenvironment{important}[1][1.9ex]
+  {\medskip\begin{mdframed}[outerlinewidth=0.25,leftmargin=10,%
+     rightmargin=-10pt,backgroundcolor=white,hidealllines=true,leftline=true,%
+     innertopmargin=0pt,splittopskip=\topskip,skipbelow=\baselineskip,innerbottommargin=0pt%
+     skipabove=\baselineskip]}
+  {\end{mdframed}}
+  
+
+
+
+
+
+
+
+
+
+% Include any extra LaTeX packages required
+\usepackage[comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\bibliographystyle{natdin} % German
+\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
+\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+
+
+
+
+
+
+
+\usepackage[toc]{glossaries}
+\makeglossaries
+\input{Glossary}
+
+
+
+  
+
+%% ----------------------------------------------------------------
+\begin{document}
+\sloppy
+
+%\frontmatter      % Begin Roman style (i, ii, iii, iv...) page numbering
+
+% Set up the Title Page
+\title  {API-Usability der auf\\Templatemetaprogrammierung basierenden Softwarebibliothek "`SeqAn"'}
+\authors  {\texorpdfstring
+            {\href{bjoern.kahlert@fu-berlin.de}{Björn Kahlert}}
+            {Björn Kahlert}
+            }
+\addresses  {\groupname\\\deptname\\\univname}  % Do not change this here, instead these must be set in the "Thesis.cls" file, please look through it instead
+\date       {\today}
+\subject    {}
+\keywords   {}
+\newgeometry{left=3cm, right=2.5cm}
+\maketitle
+\restoregeometry
+%% ----------------------------------------------------------------
+
+\setstretch{1.3}  % It is better to have smaller font and larger line spacing than the other way round
+
+% Define the page headers using the FancyHdr package and set up for one-sided printing
+\fancyhead{}  % Clears all page headers and footers
+\rhead{\thepage}  % Sets the right side header to show the page number
+\lhead{}  % Clears the left side page header
+
+\pagestyle{fancy}  % Finally, use the "fancy" page style to implement the FancyHdr headers
+
+%% ----------------------------------------------------------------
+% Declaration Page required for the Thesis, your institution may give you a different text to place here
+\declaration{
+Ich, Bj\"orn Kahlert, erkl\"are: Ich habe die vorgelegte Dissertation selbständig, ohne unerlaubte fremde Hilfe und nur mit den Hilfen angefertigt, die ich in der Dissertation angegeben habe. Alle Textstellen, die
+wörtlich oder sinngemäß aus veröffentlichten oder nicht veröffentlichten Schriften entnommen
+sind, und alle Angaben, die auf mündlichen Auskünften beruhen, sind als solche kenntlich
+gemacht. Bei den von mir durchgeführten und in der Dissertation erwähnten Untersuchungen
+habe ich die Grundsätze guter wissenschaftlicher Praxis eingehalten.
+\\
+\\
+Unterschrift:\\
+\rule[1em]{25em}{0.5pt}  % This prints a line for the signature
+ 
+Ort \& Datum:\\
+\rule[1em]{25em}{0.5pt}  % This prints a line to write the date
+
+\vfil
+
+Datum der Disputation: \textit{\textbf{27.10.2015}}
+
+Dekan des Fachbereichs Mathematik und Informatik:\\
+\textit{\textbf{Prof. Dr.-Ing. Jochen Schiller}}
+
+Gutachter:\\
+\textit{\textbf{Prof. Dr. Lutz Prechelt}, Freie Universität Berlin, Deutschland}\\
+\textit{\textbf{Prof. Dr.-Ing. Mira Mezini}, Technische Universität Darmstadt, Deutschland}
+}
+
+% The Abstract Page
+\addtotoc{Zusammenfassung}  % Add the "Abstract" page entry to the Contents
+\abstract{
+%\addtocontents{toc}{\vspace{1em}}  % Add a gap in the Contents, for aesthetics
+
+\textbf{Ausgangslage} Die Usability der bioinformatischen, auf C\texttt{++}-basierenden Softwarebibliothek \textit{SeqAn} ist wenig ausgeprägt, denn SeqAn wurde mit dem ultimativen Ziel einer hohen Performance entwickelt. Die Grundlage des Entwurfs bilden \textit{Templatemetaprogrammierung} und \textit{generische Programmierung}. Obwohl diese Techniken die Usability einer API stark beeinflussen, ist die API-Usability-Forschung diesbezüglich vollkommen erkenntnislos.
+
+\textbf{Zielsetzung} Das Ziel dieser Arbeit besteht darin, die API-Usability von SeqAn zu erforschen, um mit diesem Wissen SeqAns Usability zu verbessern und verallgemeinerbare Erkenntnisse für andere auf Templatemetaprogrammierung basierenden APIs zu gewinnen.
+
+\textbf{Methode} Für die Erforschung der API-Usability von SeqAn wird die empirische, praktisch annahmenlose Grounded Theory Methode nach Strauss und Corbin gemeinsam mit einer neuartigen und den speziellen organisatorischen Rahmenbedingungen gerechten Datenerhebungsmethode eingesetzt. Letztere kombiniert diverse subjektive und eine hochstrukturierte, objektive Datenquelle miteinander. Eigens für diese Arbeit wird das qualitative Datenanalysewerkzeug \textit{API Usability Analyzer} entwickelt, welches den methodischen Gegebenheiten gerecht wird, indem es eine Reihe von Funktionen bietet, die selbst bei den kommerziellen Lösungen wie ATLAS.ti nicht zu finden sind.
+
+\textbf{Ergebnisse} Diese Arbeit stellt die Ergebnisse der API-Analyse in Form einer Grounded Theory dar, die nachzeichnet, wie fehlende Erkenntnisse zu den verwendeten Programmierparadigmen und mangelndes Verständnis von den SeqAn-Anwendern, die sich in API-Anwender und API-Endanwender unterscheiden lassen, zu der schlechten API-Usability führte. Es werden die gefundenen Usability-Probleme und mit welchen Strategien diese von den Anwendern bewältigt werden, ausführlich vorgestellt. Weiterhin werden Maßnahmen zur Behebung der Usability-Probleme vorgeschlagen. Unter anderem wird die Dokumentation, unter Berücksichtigung von so genannten Sprachentitätstypen, umfassend überarbeitet und die Nutzung von SeqAn durch API-Endanwender ermöglicht. Weitere Beiträge stellen ein umfassender wissenschaftlicher Literaturüberblick zum Thema API-Usability und das bereits erwähnte qualitative Datenanalysewerkzeug dar.
+
+\textbf{Konklusion} Die in dieser Arbeit erarbeiteten und umgesetzten Maßnahmen haben die API-Usability von SeqAn erfolgreich verbessert. Die auf diesem Weg gewonnen Erkenntnisse lassen allgemeine Rückschlüsse auf den Entwurf von auf Templatemetaprogrammierung basierenden Softwarebibliotheken zu. Darüber hinaus eignet sich das eingesetzte Verfahren für die Evaluation anderer APIs. Abschließend werden Empfehlung für den Bau leistungsfähiger, qualitativer Datenanalysewerkzeuge für Forschungsvorhaben vorgestellt, die ebenfalls die Grounded Theory Methode einsetzen.
+
+
+
+  
+
+%``SeqAn makes me feel stupid''\citepurl{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/errorProneness}
+
+%``Vergewaltigung der OO-Programmierung''\citepurl{apiua://survey/2011-09-14-T15:23:17.211+02:00}
+
+%``not clear why you have to go through all this pain''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/14}
+
+% ``If SeqAn [just] had the same way of doing things like the STL''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/9}
+
+
+%The Thesis Abstract is written here (and usually kept to just this page). The page is kept centered vertically so can expand into the blank space above the title too\ldots
+
+}
+
+\cleardoublepage  % Abstract ended, start a new page
+%% ----------------------------------------------------------------
+
+\setstretch{1.3}  % Reset the line-spacing to 1.3 for body text (if it has changed)
+
+% The Acknowledgements page, for thanking everyone
+\acknowledgements{
+\addtocontents{toc}{}  % Add a gap in the Contents, for aesthetics %\vspace{1em}
+Mein Dank gilt den folgenden Personen, ohne deren Beitrag diese Arbeit nicht möglich gewesen wäre:
+\begin{itemize}
+  \item Lutz Prechelt für sein Vertrauen in meine Person, die Betreuung und die vielen hilfreichen Anmerkungen.
+  \item Julia Schenk, Franz Zieris, Stephan Salinger und Holger Schmeisky für die wertvollen Diskussionen über
+meine Forschung.
+  \item Meiner Familie und meinen Freunden, die meine langen Phasen der konzentrierten Isolation ertragen haben.
+  Dabei danke ich ganz besonders meiner Mutter, die mich stets kompromisslos unterstützte. Alexander Zelasny, der keine inhaltliche Auseinandersetzung scheute und für mich eine unermessliche Unterstützung war. Marcus Wolschke, der mir die Luft gab, die ich für den Abschluss meiner Arbeit benötigte. Mario Zelasny und Niels Berkholz, die mich unterstützten, indem sie mir unzählige Störfaktoren vom Hals hielten. Andrea Tank für ihren aufopfernden Einsatz bei der Korrektur meiner Arbeit. Und schließlich auch Martin Merl und Olaf Apel für die intellektuelle Auseinandersetzung mit meinem Thema.
+  \item Einzelnen Mitgliedern des Völklinger Kreis e.V. --- ganz besonders Harm-Peter Dietrich und Patrick Dommaschk für deren Bestärkung meines Lebensweges.
+  \item Den Teilnehmern der SeqAn-BioStore-Workshops und der PMSB-Praktika für deren Bereitschaft zur Datenaufzeichnung.
+  \item Und allen dafür, dass sie mich stets ermutigt haben, weiter zu machen.
+\end{itemize}
+}
+\clearpage  % End of the Acknowledgements
+%% ----------------------------------------------------------------
+
+\pagestyle{fancy}  %The page style headers have been "empty" all this time, now use the "fancy" headers as defined before to bring them back
+
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Inhaltsverzeichnis}}  % Set the left side page header to "Contents"
+\addtotoc{Inhaltsverzeichnis}
+\tableofcontents  % Write out the Table of Contents
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Abbildungsverzeichnis}}  % Set the left side page header to "List if Figures"
+\listoffigures  % Write out the List of Figures
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Tabellenverzeichnis}}  % Set the left side page header to "List of Tables"
+\listoftables  % Write out the List of Tables
+
+%% ----------------------------------------------------------------
+\lhead{\emph{Listungsverzeichnis}}  % Set the left side page header to "List of Tables"
+\listoflistings  % Write out the List of Tables
+
+%% ----------------------------------------------------------------
+\setstretch{1.5}  % Set the line spacing to 1.5, this makes the following tables easier to read
+\clearpage  % Start a new page
+\lhead{\emph{Abk\"urzungen}}  % Set the left side page header to "Abbreviations"
+\listofsymbols{ll}  % Include a list of Abbreviations (a table of two columns)
+{
+\textbf{API} & \textbf{A}pplication \textbf{P}rogramming \textbf{I}nterface \\
+\textbf{GTM} & \textbf{G}rounded \textbf{T}heory \textbf{M}ethode \\
+\textbf{GT} & \textbf{G}rounded \textbf{T}heory \\
+\textbf{HE} & \textbf{H}euristische \textbf{E}valuation\\
+\textbf{CDF} & \textbf{C}ognitive \textbf{D}imensions \textbf{F}ramework\\
+\textbf{CD} & \textbf{C}ognitive \textbf{D}imension / kognitive Dimension\\
+}
+
+
+%% ----------------------------------------------------------------
+\begin{comment}
+  
+\clearpage
+\lhead{\emph{Notationen}}
+\listofnotations
+{
+In dieser Arbeit wird die \acrlong{gtm} (siehe \sref{sec:gtm}) verwendet. Diesbezüglich werden folgende Notationen vereinbart:
+\begin{description}
+  \item[Kodes / Konzepte / Kategorien] \hfill \code{Bezeichner}
+  
+  Der Bezeichner ist verlinkt und verweist auf das tatsächliche Element innerhalb der Forschungsdaten. In den Forschungsdaten sind die Datenpunkte/Phänomene zu finden, auf denen das Element basiert.
+  
+  Beispiel: \code{apiua://code/-9223372036854775615}
+  
+  \bigskip
+  
+  \item[Relationen] \hfill \rel[Name]{\code{Bezeichner 1}}{\code{Bezeichner 2}}
+  
+  Beispiel: \rel[f"uhren\ zu]{\code[apiua://code/-9223372036854775281]{Intuitive Entwurfsentscheidungen}}{\code[apiua://code/-9223372036854774939]{Usability-Problemen}}
+  
+  \bigskip
+  
+  \item[Farben] \hfill \codebullet{apiua://code/-9223372036854774814}\,\codebullet{apiua://code/-9223372036854774813}\,\codebullet{apiua://code/-9223372036854774812}
+  
+  Die Farben geben Aufschluss über die Zusammengehörigkeit von Konzepten und werden durch einen semi-transparenten Kreis (\codebullet{apiua://code/-9223372036854774813}) dargestellt. Ein vollfarbiger Kreis (\codebullet{apiua://code/-9223372036854774814}) markiert besonders wichtige und ein transparenter Kreis (\codebullet{apiua://code/-9223372036854774812}) weniger wichtige Konzepte.
+  
+\end{description}
+}
+\end{comment}
+
+%% ----------------------------------------------------------------
+%\clearpage  %Start a new page
+%\lhead{\emph{Symbols}}  % Set the left side page header to "Symbols"
+%\listofnomenclature{lll}  % Include a list of Symbols (a three column table)
+%{
+% symbol & name & unit \\
+%$a$ & distance & m \\
+%$P$ & power & W (Js$^{-1}$) \\
+%& & \\ % Gap to separate the Roman symbols from the Greek
+%$\omega$ & angular frequency & rads$^{-1}$ \\
+%}
+%% ----------------------------------------------------------------
+% End of the pre-able, contents and lists of things
+% Begin the Dedication page
+
+\setstretch{1.3}  % Return the line spacing back to 1.3
+
+\begin{comment}
+\pagestyle{empty}  % Page style needs to be empty for this page
+\dedicatory{For/Dedicated to/To my\ldots}
+
+\addtocontents{toc}{\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+\end{comment}
+
+%% ----------------------------------------------------------------
+%\mainmatter	  % Begin normal, numeric (1,2,3...) page numbering
+\pagestyle{fancy}  % Return the page headers back to the "fancy" style
+
+\makeatletter
+\if@twoside %% Für Doppelseitig
+  \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+  \renewcommand{\sectionmark}[1]{ \markright{#1}{} }
+
+  \fancyhf{}
+  \fancyhead[LE,RO]{\thepage}
+  \fancyhead[RE]{\textit{\chaptername\ \thechapter. \nouppercase{\leftmark}} }
+  \fancyhead[LO]{\textit{\thesection\space \nouppercase{\rightmark}}}
+\else  %% Für Einseitig
+  \renewcommand{\chaptermark}[1]{ \markboth{#1}{} }
+  \renewcommand{\sectionmark}[1]{ \markright{#1}{} }
+
+  \fancyhf{}
+  \fancyhead[R]{\thepage}
+  \fancyhead[L]{\textit{\thesection\space \nouppercase{\rightmark}}}
+\fi
+\makeatother
+
+
+
+\addtocontents{toc}{\protect\vspace{2em}}
+\input{Chapters/01_Motivation}
+\input{Chapters/02_Forschungsstand}
+\input{Chapters/03_Forschung}
+\input{Chapters/04_Ergebnisse}
+\include{Chapters/05_FazitAusblick}
+
+%% ----------------------------------------------------------------
+% Now begin the Appendices, including them as separate files
+
+\appendix % Cue to tell LaTeX that the following 'chapters' are Appendices
+
+\include{Appendices/app-APIUA}
+\include{Appendices/app-Literatur}
+\include{Appendices/app-Daten}
+\include{Appendices/app-misc}
+
+\addtocontents{toc}{\protect\vspace{2em}}  % Add a gap in the Contents, for aesthetics
+
+%% ----------------------------------------------------------------
+
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{\nouppercase{\rightmark}}}
+\fancyhead[LO]{\textit{\nouppercase{\leftmark}}}
+
+\def\printingglossary{true}
+\printglossary[title=Glossar, toctitle=Glossar]
+
+\backmatter
+
+\label{Bibliography}
+\fancyhf{}
+\fancyhead[LE,RO]{\thepage}
+\fancyhead[RE]{\textit{\nouppercase{Literaturverzeichnis}}}
+\fancyhead[LO]{\textit{\nouppercase{Literaturverzeichnis}}}
+%\bibliographystyle{acm}
+\bibliography{Bibliography}
+
+\end{document}  % The End
+%% ----------------------------------------------------------------

@@ -1,0 +1,441 @@
+\documentclass[11pt,a4paper]{book}
+
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\DeclareUnicodeCharacter{00A0}{ }
+\usepackage[ngerman]{babel}
+\usepackage{lscape}
+\usepackage{pdflscape}
+\usepackage{geometry}
+\usepackage{fixltx2e, amsmath, xifthen, url, tikz, lipsum, relsize}
+\usepackage[hypcap=false]{caption}
+\usepackage[pdfpagemode={UseOutlines},bookmarks=true,bookmarksopen=true,
+   bookmarksopenlevel=0,bookmarksnumbered=true,hypertexnames=false,
+   colorlinks,linkcolor={black},citecolor={black},filecolor={black},urlcolor={black},
+   pdfstartview={FitV},unicode,breaklinks=true]{hyperref}
+   \pdfstringdefDisableCommands{
+   \let\\\space
+}
+\expandafter\def\expandafter\UrlBreaks\expandafter{\UrlBreaks\do\-}
+\usepackage[parfill]{parskip}
+\usepackage{url}
+\usepackage{graphicx}
+\usepackage{pdfpages}
+\usepackage{threeparttablex}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{fancyhdr}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{multicol}
+\newcommand{\fref}[1]{Abbildung~\ref{#1}}
+\newcommand{\tref}[1]{Tabelle~\ref{#1}}
+\newcommand{\eref}[1]{Equation~\ref{#1}}
+\newcommand{\cref}[1]{Kapitel~\ref{#1}}
+\newcommand{\sref}[1]{Abschnitt~\ref{#1}}
+\newcommand{\aref}[1]{Anhang~\ref{#1}}
+\newcommand{\lref}[1]{Listung~\ref{#1}}
+
+\usepackage[comma, sort&compress]{natbib}  % Use the "Natbib" style for the references in the Bibliography
+\bibliographystyle{natdin} % German
+\usepackage{verbatim}  % Needed for the "comment" environment to make LaTeX comments
+\usepackage{vector}  % Allows "\bvec{}" and "\buvec{}" for "blackboard" style bold vectors in maths
+
+\usepackage{excludeonly}
+
+\usepackage{titlesec}
+\setcounter{secnumdepth}{3}
+\titleformat{\section}[frame]
+{\normalfont\Large\filcenter}{\thispagestyle{empty}\quad\thesection\quad}{1em}{\Large\filcenter\MakeUppercase}
+\titlespacing*{\section}{0pt}{3.5ex plus 1ex minus .2ex}{2.3ex plus .2ex}
+\newcommand{\sectionbreak}{\cleardoublepage}
+
+\titleformat{\subsection}
+  {\normalfont\Large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}
+  {\normalfont\large\bfseries}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[runin]
+  {\normalfont\large\bfseries}{\theparagraph}{1em}{}
+\titleformat{\subparagraph}[runin]
+  {\normalfont\normalsize\bfseries}{\thesubparagraph}{1em}{}
+  
+
+  
+
+
+% Pages Differences, usage: \pagedifference{A}{B}, see http://tex.stackexchange.com/questions/38139/how-can-i-calculate-the-difference-of-2-counters-pageref
+\usepackage{refcount}
+\newcommand{\pagedifference}[3]{%
+  \number\numexpr\getpagerefnumber{#2}-\getpagerefnumber{#1}+#3\relax}
+
+
+
+\usepackage[bottom]{footmisc}
+
+\usepackage{apiua}
+
+
+
+\newmdenv[%
+skipabove=2\parskip,skipbelow=2\parskip,innermargin=4\parskip,outermargin=4\parskip,%
+roundcorner=3pt, subtitlebelowline=true,subtitleaboveline=true, subtitlebackgroundcolor=gray!30, backgroundcolor=gray!20!white, frametitle={},frametitlerule=true, frametitlebackgroundcolor=gray!30, nobreak=true]{furtherreading}
+
+
+
+\hyphenation{SeqAn}
+
+\usepackage{listings}
+\usepackage[outputdir=.texpadtmp]{minted}
+\setminted{linenos,breaklines=true,autogobble=true}
+
+\usepackage[toc]{glossaries}
+\makeglossaries
+\input{Glossary}  
+
+
+
+%\includeonly{%
+%Sections/sec-APIUA,%
+%Appendices/app-APIUA%
+%}
+
+
+
+
+
+
+
+\begin{document}
+\sloppy
+
+\chapter{Chapter}
+
+In diesem Abschnitt präsentiere ich meine \gls{gt} über das Zustandekommen von Entwurfsentscheidungen und deren Auswirkungen auf die API-Usability von SeqAn. Dabei beleuchte ich besonders die sich als außerordentlich wichtig herausgestellte \code{apiua://code/-9223372036854775515}\footnote{Zur Erinnerung: Die Kode-/Konzept-/Kategorie-Bezeichner können angeklickt werden. Sie sind verlinkt mit meinen Forschungsdaten. Die Farben geben Aufschluss über die Zusammengehörigkeit von Konzepten und werden durch einen semi-transparenten Kreis (\codebullet{apiua://code/-9223372036854774813}) dargestellt. Ein vollfarbiger Kreis (\codebullet{apiua://code/-9223372036854774814}) markiert besonders wichtige Konzepte. Mehr Details zur Notation können im \sref{sec:notationen} ab Seite \pageref{sec:notationen} nachgelesen werden.}.
+
+\fref{fig:research-gt} visualisiert meine Theorie. Gruppiert sind dabei die gefundenen bzw. entwickelten Konzepte in Form der fünf Hauptkategorien \code{apiua://code/-9223372036854775281}, \code{apiua://code/-9223372036854774893}, \code{apiua://code/-9223372036854774939}, \code{apiua://code/-9223372036854775414} und \code{apiua://code/-9223372036854774875}, wobei \code{apiua://code/-9223372036854775633} die Kernkategorie bildet.
+
+Ich präsentiere meine \gls{gt} in Form einer \textit{Story}, bei der ich auf alle oben genannten Kategorien eingehen werde. Nicht alle Erkenntnisse sind datengetrieben im strengen Sinne der \gls{gtm} zu Stande gekommen. Ein Teil meiner Theorie basiert auf einer technisch-deduktiven Argumentation. Zur Unterscheidung wird die folgende Notation verwendet:
+
+\begin{itemize}
+%\itemsep1pt\parskip0pt\parsep0pt
+  \item[] \code{Konzept}\theorybasis{dd}, das hauptsächlich auf einer datengetriebenen Argumentation basiert
+  \item[] \code{Konzept}\theorybasis{td}, das hauptsächlich auf einer technisch-deduktiven Argumentation basiert
+  \item[] \code{Konzept}\theorybasis{both}, das sowohl auf einer datengetriebenen als auch auf einer technisch-deduktiven Argumentation basiert\citepurl{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop12/workshop2012-data-20120906/feedback/feedback.tsv\#L3}
+\end{itemize}
+
+Hello\theorybasis{dd}
+
+Hello\theorybasis{td}
+
+Hello\theorybasis{both}
+
+
+
+\section{Section}
+\subsection{Subsection}
+\subsubsection{Subsubsection}
+\paragraph{Paragraph}
+\subparagraph{Subparagraph}
+
+\code{Anwender}\citepurl{apiua://code/-9223372036854774893}\\
+\code{Anwender}\\
+\code[apiua://code/-9223372036854774893]{Anwenderschaft}\\
+\code[apiua://code/-9223372036854775515]{Anwenderschaft}\\
+\code{apiua://code/-9223372036854774893}\\
+Lorem ipsum \codebullet{apiua://code/-9223372036854774893} dolor \codetext{apiua://code/-9223372036854774893} sit.
+
+\begin{center}
+\usemintedstyle{bw}
+\begin{minted}[linenos=true,firstnumber=481]{sh}
+2012-09-04T14:14:23.729+02:00 READY http://trac.seqan.de/wiki/Tutorial/ GettingStarted 160.45.233.238 - 0 0 1350 6122012-09-04T14:14:26.774+02:00 SCROLL http://trac.seqan.de/wiki/Tutorial/ GettingStarted 160.45.233.238 - 0 228 1350 6122012-09-04T14:14:27.463+02:00 LINK-http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio http://trac.seqan.de/wiki/Tutorial/ GettingStarted 160.45.233.238 - 0 228 1350 6122012-09-04T14:14:27.784+02:00 UNLOAD http://trac.seqan.de/wiki/Tutorial/ GettingStarted 160.45.233.238 - 0 228 1350 6122012-09-04T14:14:28.804+02:00 READY http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 147 1350 6122012-09-04T14:14:35.196+02:00 SCROLL http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 3420 1350 6122012-09-04T14:14:49.711+02:00 SCROLL http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 4104 1350 6122012-09-04T14:14:53.414+02:00 SCROLL http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 3876 1350 6122012-09-04T14:15:00.302+02:00 SCROLL http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 3648 1350 6122012-09-04T14:15:06.149+02:00 BLUR http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 3648 1350 6122012-09-04T14:15:21.071+02:00 FOCUS http://trac.seqan.de/wiki/Tutorial/ GettingStarted/WindowsVisualStudio 160.45.233.238 - 0 3648 1350 612
+\end{minted}
+\captionof{listing}[Beispiel: CodeStore.xml]{Auszug aus der CodeStore.xml, auf der diese Arbeit basiert.}
+\label{lst:codestore-file}
+\end{center}
+
+\begin{enumerate}
+    \item Die Umstellung des Dokumentationssystems wurde von den SeqAn-Entwicklern als wichtig und sinnvoll erachtet, was sich auch an ihrer mehrwöchigen, inhaltlichen Mithilfe zeigte.
+    \item Auch der Entwicklermodus wurde positiv von den SeqAn-Entwicklern angenommen. Dieser wird regelmäßig genutzt, um Dokumentationseinträge stärker zu verlinken.
+    \item Die positiven Auswirkungen eines Gesamtüberblicks und von Beispielen sind bereits vielfach in der Literatur beschrieben worden (siehe \sref{sec:forschung-einzelne-ergebnisse}). Es ist daher naheliegend, dass der neu geschaffene Gesamtüberblick und die ergänzten bzw. korrigierten Beispiele (siehe jeweils \sref{sec:improve-dox}) zu einer signifikante Verbesserung der API-Usability beigetragen haben.
+    \item Die Verbesserung der Suchfunktion ist eine direkte Konsequenz aus den von den Anwendern geäußerten Kritikpunkten. Die Unterstützung von Aliassen und einer gewichteten Suche (siehe  \sref{sec:improve-dox}) lassen den Schluss auf eine Usability-Verbesserung zu.
+    \item \code{apiua://code/-9223372036854775413} werden in keiner mir bekannten C\texttt{++}-Library, die auf Templatemetaprogrammierung basiert, explizit zu Dokumentationszwecken eingesetzt. Dafür gibt es zwei mögliche Gründe.
+    \begin{itemize}
+      \item Entweder richten sich derartige Libraries an fortgeschrittene Entwickler\footnote{Typische Vertreter sind die Boost-Libraries wie BCCL (\url{http://www.boost.org/doc/libs/1_58_0/libs/concept_check/concept_check.htm}) oder CRC(\url{http://www.boost.org/doc/libs/1_58_0/libs/crc/}).}, was den Erklärungsbedarf anspruchsvoller Sprachentitätstypen deutlich verringert.
+      \item Oder aber entsprechende Libraries verbergen für Anfänger ungeeignete Sprachentitätstypen beispielsweise durch den Einsatz von CRTP\footnote{Zu den bekanntesten Vertretern gehört die Microsoft Active Template Library (\url{https://msdn.microsoft.com/en-us/library/4e07a759.aspx}).}.
+    \end{itemize}
+    SeqAn wendet sich sowohl an API-Anwendern als auch an API-Endanwender und damit auch an weniger erfahrene Entwickler. Meine Forschungsergebnisse haben gezeigt, dass das fehlende Verständnis neuartiger Sprachentitätstypen wie Interface-Metafunktionen zu Usability-Problemen führt. Daher besteht für mich kein Zweifel daran, dass die explizite Einführung dieser Sprachentitätstypen zu einer Usability-Verbesserung beiträgt. Dennoch lohnt sich sicherlich eine empirische Validierung.
+  \end{enumerate}
+
+Lorem ipsum dolor sit \code{apiua://code/-9223372036854775641}, consectetur adipiscing \code[apiua://code/-9223372036854775641]{Anwenderhintergründe}. Integer semper velit nulla, in sodales dolor pellentesque ut. Nullam ullamcorper eleifend metus, vitae euismod leo \code{apiua://code/-9223372036854775684} sit amet. Proin in odio at leo vulputate interdum nec vel lorem. Etiam \rel{\code{apiua://code/-9223372036854775684}}{\code{apiua://code/-9223372036854775599}} nisl quam. Integer molestie \rel[relation]{\code{apiua://code/-9223372036854775684}}{\code[apiua://code/-9223372036854775599]{Anderer Name}} massa, a vestibulum \relation{eine Relation} varius scelerisque. Praesent vitae augue non neque volutpat scelerisque a id purus. Maecenas pharetra hendrerit lacus, vel aliquet lorem dictum ut. Pellentesque iaculis, mi et interdum fermentum, metus nibh feugiat ligula, sit amet venenatis ante nibh a purus. Nam scelerisque pharetra tellus, non ultrices augue euismod eget. Praesent vestibulum dictum dictum. Integer venenatis orci vitae orci fermentum tincidunt a eget ligula. Fusce vestibulum euismod quam eu rhoncus.
+
+Ich konnte \code[apiua://code/-9223372036854775508]{Blindes Kopieren} vielfach sowohl in meinen objektiven\citepurl{apiua://diff/0meio6dzt3eo1wj7/22/sandbox\%2Fmy\_sandbox\%2Fapps\%2Fmy\_app\%2Fmy\_app.cpp} als auch subjektiven Daten\citepurl{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/roleExpressiveness} beobachten, bei denen Anwender keine Tutorials bearbeitet, sondern eigenen Code geschrieben hatten. Offensichtliche wird diese Strategie durch das Fehlen von Beispielen behindert. Das ist besonders dramatisch, als das die insgesamt geringe Usability von SeqAn allem Anschein nach auch pragmatische und systematische Anwender zu dieser Strategie zwingt.
+
+``It's this inconsistency that makes it hard.''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/60}
+
+ACM\citepurl{apiua://axialcodingmodel/0z5ANneuBKhFKJkb}
+diff1\citepurl{apiua://diff/0meio6dzt3eo1wj7/22/sandbox\%2Fmy\_sandbox\%2Fapps\%2Fmy\_app\%2Fmy\_app.cpp}
+diff2\citepurl{apiua://diff/2ur8t8dx88n4v6ef/5/\%2Fmy\_sandbox/\%2Ffirst\_app.cpp}
+doclog1\citepurl{apiua://doclog/7i0p2gnbxpw7gofj/2012-09-04T13\%3A10\%3A18.566\%2B02\%3A00\%09FOCUS\%09http\%3A\%2F\%2Fdocs.seqan.de\%2Fseqan\%2Fdev\%2FINDEX\_Page.html\%09160.45.238.220\%09-\%090\%090\%09180\%091103}
+doclog2\citepurl{apiua://doclog/7i0p2gnbxpw7gofj/2012-09-04T13\%3A20\%3A23.907\%2B02\%3A00\%09TYPING-search-substring\%09http\%3A\%2F\%2Fdocs.seqan.de\%2Fseqan\%2Fdev\%2FINDEX\_Page.html\%09160.45.238.220\%09-\%090\%090\%09180\%091103}
+gd\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/135}
+relation\citepurl{apiua://relation/ir9b27ic23kv7jhi617vnf8u5kvclc59}
+survey\citepurl{apiua://survey/2011-09-14-T15:23:17.211+02:00}
+cd\citepurl{apiua://survey/cd/2013-09-18T17-45-54.88891500+0200/questionnaire}
+
+
+\paragraph{Organisation und Sortierung von Kodes}
+Im Gegensatz zur \textit{ATLAS.ti} können in \gls{apiua} Kodes gefiltert, sortiert und hierarchisch angeordnet werden (siehe \autoref{fig:apiua-codes-atlas}, links). Die Semantik der hierarchischen Modellierung wird von dem Werkzeug wie folgt behandelt: ``Wenn Kode \code{A} der Elter des Kodes \code{A.1} ist, ist \code{A.1} eine Ausprägung von \code{A}, oder: \code{A} manifestiert sich in \code{A.1}.''
+
+\clearpage
+
+SeqAn basiert praktisch in Reinkultur auf dem Programmierparadigma \code{apiua://code/-9223372036854775515} mit allen seinen Folgeentwurfsentscheidungen wie den \code{apiua://code/-9223372036854775514} und ignoriert dabei weitgehend die \code{apiua://code/-9223372036854775494} seiner Anwender. Dies führt dazu, dass Anwender mit einer \textit{C\texttt{++}-/STL-Objektorientierungsprägung} auf zwei Weisen behindert werden. Einerseits werden sie in ihrer Erwartung, objektorientierte Programmierung anzutreffen, vollkommen überrascht (``Vergewaltigung der OO-Programmierung'')\citepurl{apiua://survey/2011-09-14-T15:23:17.211+02:00}. Andererseits kann praktisch keiner der von mir beobachteten Anwender auf vorhandene Kenntnisse zurückgreifen (\code[apiua://code/-9223372036854774904]{Wiederverwendungsstrategien}), die ihnen beim \code[apiua://code/-9223372036854774824]{Erlernen} von und bei der \code[apiua://code/-9223372036854775455]{Programmentwicklung} mit SeqAn helfen könnten. Ein entsprechendes Phänomen ist die folgende Aussage: ``SeqAn is a completely different way of doing mostly the same thing [as the STL].''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/6}
+     
+     Bei diesem Problem handelt es sich um ein besonders schweres Problem, denn die Auswirkungen erstrecken sich sowohl auf die Erlernbarkeit (``It wasn't that straight forward as you would have it expected''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/135}), wie auch die \code{apiua://code/-9223372036854775455} (``Mir fällt es sehr schwer zu experimentieren, weil das handling von Ein- und Ausgabe schwierig ist [...].''\citepurl{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/provisionality}), als auch die \code{apiua://code/-9223372036854775441} (``[SeqAn] is kind of annoying.''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/75}).
+     
+     SeqAns unterscheidet sich stark von der C\texttt{++} Standard Template Library (STL), was weitere Usability-Probleme zur Folge hat:
+     \begin{itemize}
+       \item SeqAn verwendet \code[apiua://code/-9223372036854775579]{generische Programmierung}, was dazu führt, dass alle Memberfunktionen technisch global implementiert sind. Die STL hingegen nutzt größtenteils Memberfunktionen. Insbesondere \code{apiua://code/-9223372036854775544} befasst sich mit den Auswirkungen.
+       \item Durch die globale Implementierung von Memberfunktionen geben gleichnamige generische Funktionen unterschiedliche Rückgabetypen zurück. Dies wird hauptsächlich durch das Problem \code{apiua://code/-9223372036854775513} erfasst.
+       \item Die \code{apiua://code/-9223372036854775515} führt weitere sprachliche Mittel ein, die in der STL nicht existieren und welche ich unter \code{apiua://code/-9223372036854775413} erläutere.
+       \item Die Verwendung von Iteratoren unterscheidet sich in SeqAn von der in der STL. Dies wird in \code{apiua://code/-9223372036854775535} beschrieben.
+     \end{itemize}
+     
+Um die groben Probleme systematisch aufzudecken, analysierte ich die Artefakte, auf die vermutlich ein Anwender trifft, wenn er das erste Mal SeqAn verwendet. Ich habe also die \textit{\gls{oobe}} \citep{Fouts:2000:SLE:353360.353375} von SeqAn mit Hilfe einer vereinfachten \textit{\glslink{he}{Heuristischen Evaluation (HE)}} analysiert.
+     
+``Die \acrlong{oobe} --- kurz \acrshort{oobe} --- beschreibt die ersten Erfahrungen, die ein Anwender mit einem Produkt macht. Häufig hat der Anwender dabei --- abhängig von der Art des Produkts --- Kontakt mit den folgenden Artefakten: Produktverpackung und -handbuch, Installationsprozedur, Konfigurationsassistent, usw. \citep{Fouts:2000:SLE:353360.353375}''. \citep{Kahlert:2011wr}
+
+\subsubsection{Notationen}
+\label{sec:notationen}
+
+In dieser Arbeit verfolge ich das methodische Ziel einer hohen Nachvollziehbarkeit. Zu diesem Zweck vereinbare ich folgende Notationen:
+
+\begin{itemize}\raggedright
+  \item Kodes, Konzepte und Kategorien werden wie folgt notiert: \code{Bezeichner}
+  \begin{itemize}
+    \item Beispiel: \code{apiua://code/-9223372036854775615}
+    \item Diese Darstellung wird durch das \texttt{\textbackslash{}code}-Makro erzeugt, das Bestandteil meines \LaTeX-Pakets \texttt{apiua} ist. Das Beispiel wurde durch den Befehl \textbackslash{}code\{apiua://code/-9223372036854775615\} konstruiert.  
+    \item Der Bezeichner ist verlinkt und verweist eindeutig auf das entsprechende Element innerhalb meiner Forschungsdaten. Im angezeigten Beispiel lautet die URI \url{apiua://code/-9223372036854775615}.
+    \item Da zur Auflösung der Links eigentlich das im \sref{sec:apiua} beschriebene Datenanalysewerkzeug installiert sein muss, verweisen die Links stattdessen auf eine ebenfalls öffentlich zugängliche HTML-Fassung meiner Forschungsdaten.
+    \item Das HTML-Dokument listet alle gefundenen Kodes/Konzepte/Kategorien/Relationen hierarchisch auf. Zu jedem Eintrag wird mein Memo und alle von mir entdeckten Phänomene (\textit{Instances}) dargestellt. Eventuell vorhandene Memos in Bezug auf einzelne Phänomene werden ebenfalls angezeigt. Häufig verfügen abstrakte Kodes nicht über unmittelbare Phänomene. In diesem Fall empfiehlt es sich, die Phänomene von Unterkodes zu betrachten.
+  \end{itemize}
+  
+  \item Relationen werden wie folgt notiert: \rel[Name]{\code{Bezeichner 1}}{\code{Bezeichner 2}}
+  \begin{itemize}
+    \item Beispiel: \mbox{\rel[f"uhren\ zu]{\code[apiua://code/-9223372036854775281]{Intuitive Entwurfsentscheidungen}}{\code[apiua://code/-9223372036854774939]{Usability-Problemen}}}
+    \item Unbenannte Relationen haben das Format: \mbox{\rel{\code{Bezeichner 1}}{\code{Bezeichner 2}}}
+    \item Die Elemente einer Relation sind ebenfalls verlinkt.
+  \end{itemize}
+  
+  \item Wichtigkeit wird durch Opazität notiert: \codebullet{apiua://code/-9223372036854774814}\,\codebullet{apiua://code/-9223372036854774813}\,\codebullet{apiua://code/-9223372036854774812}
+  \begin{itemize}
+    \item Standardmäßig wird ein semi-transparenter Kreis (\codebullet{apiua://code/-9223372036854774813}) verwendet.
+    \item Ein vollfarbiger Kreis (\codebullet{apiua://code/-9223372036854774814}) markiert besonders wichtige Kodes, Konzepte und Kategorien.
+    \item Ein transparenter Kreis (\codebullet{apiua://code/-9223372036854774812}) markiert weniger wichtige Kodes, Konzepte und Kategorien.
+    \item Die verwendeten Farben geben Aufschluss über die Zusammengehörigkeit von Kodes, Konzepten und Kategorien. Deren Zusammengehörigkeit wird durch ähnliche Farben gekennzeichnet.
+  \end{itemize}
+  
+  \item Zitate der von mir erfassten Rohdaten sind mit dem Open-Access-Symbol versehen: \raisebox{-0.3ex}{\includegraphics[height=2.2ex]{Figures/openaccess.pdf}} %\textsuperscript{$\star$}
+  \begin{itemize}
+    \item Beispiel: ``to make things more funny there are places in SeqAn where the subscript operator returns values and not references''\citepurl{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/59}
+    \item Das Open-Access-Symbol ist mit dem entsprechenden, öffentlich zugänglichen Rohdatum verlinkt, wie dies auch bei Kodes, Konzepten und Kategorien der Fall ist.
+  \end{itemize}
+  
+  \item Bezeichnungen mit einem Glossar-Eintrag verfügen über ein hochgestelltes ``G'': \textsuperscript{G}
+  \begin{itemize}
+    \item Beispiel: \gls{euse}
+    \item Annotiert sind je Kapitel nur die ersten Vorkommnisse.
+    \item Jedes Vorkommnis ist mit dem entsprechenden Glossar-Eintrag verlinkt.
+  \end{itemize}
+\end{itemize}
+
+
+
+Die vier wichtigsten Usability-Verbesserungsmaßnahmen sind
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+  \item SeqAns Umstellung von einem Framework auf eine Library,
+  \item SeqAns Angleichung an die STL,
+  \item die Implementierung einer speziell für API-Endanwender entwickelten Wrapper-API und
+  \item die Verbesserung der Dokumentation.
+\end{itemize}
+
+Die vier wichtigsten Usability-Verbesserungsmaßnahmen sind \begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+  \item SeqAns Umstellung von einem Framework auf eine Library,
+  \item SeqAns Angleichung an die STL,
+  \item die Implementierung einer speziell für API-Endanwender entwickelten Wrapper-API und
+  \item die Verbesserung der Dokumentation.
+\end{itemize}
+
+\listoflistings
+
+\begin{listing}[ht]
+\lstinputlisting[basicstyle=\small\ttfamily, frame=, columns=flexible, tabsize=1, breaklines=true, numbers=left, numberstyle=\tiny, firstline=481, lastline=491, caption={[Beispiel: Auszug aus einer Doclog-Datei Diff-Datei]Auszug aus einer Doclog-Datei}, captionpos=b]{Listings/2ur8t8dx88n4v6ef.doclog.txt}
+\label{lst:doclog-file}
+\end{listing}
+
+Mein Dank gilt den folgenden Personen, ohne deren Beitrag diese Arbeit nicht möglich gewesen wäre:
+\begin{itemize}
+  \item Lutz Prechelt für sein Vertrauen in meine Person, die Betreuung und die vielen hilfreichen Anmerkungen.
+  \item Julia Schenk, Franz Zieris, Stephan Salinger und Holger Schmeisky für die wertvollen Diskussionen über
+meine Forschung.
+  \item Meiner Familie und meinen Freunden, die meine langen Phasen der konzentrierten Isolation ertragen haben.
+  \\ \\ Dabei danke ich ganz besonders meiner Mutter, die mich stets kompromisslos unterstützte. Alexander Zelasny, der keine inhaltliche Auseinandersetzung scheute und für mich eine unermessliche Unterstützung ist. Marcus Wolschke, der mir die Luft gab, die ich für den Abschluss meiner Arbeit benötigte. Mario Zelasny, der mich unterstützte, indem er mir unzählige Störfaktoren vom Hals hielt. Andrea Tank für ihren aufopfernden Einsatz bei der Korrektur meiner Arbeit. Und schließlich auch Martin Merl und Olaf Apel für die intensive, intellektuelle und breite Auseinandersetzung mit meinem Thema.
+  \item Einzelnen Mitgliedern des Völklinger Kreis e.V. --- ganz besonders Harm-Peter Dietrich und Patrick Dommaschk für deren Bestärkung meines Lebensweges.
+  \item Den Teilnehmern der SeqAn-BioStore-Workshops und der PMSB-Praktika für deren Bereitschaft zur Datenaufzeichnung.
+  \item Und allen dafür, dass sie mich stets ermutigt haben, weiter zu machen.
+\end{itemize}
+
+\section{Beispiel}
+
+Um den obigen technischen Erläuterungen ein wenig Leben einzuhauchen, stelle ich an dieser Stelle ein typisches, knappes SeqAn-Programm vor und wie dessen Entsprechung in Java aussehen könnte. Das Beispiel soll einerseits dabei helfen, einen besseren Eindruck von der Gestalt von auf SeqAn basierenden Programmen zu bekommen. Andererseits soll es das Verstehen dieser Arbeit erleichtern, weil ich immer wieder auf die Entwurfsentscheidungen von SeqAn zu sprechen kommen werde und diese in der Vorstellung meiner Analyseergebnisse eine große Rolle spielen.
+
+Das folgende Programm berechnet das Alignment von zwei DNA-Sequenzen und gibt die Abweichung (\textit{Score}), eine textgrafische Darstellung und die reverse DNA-Sequenz der ersten Sequenz aus:
+
+\begin{center}
+\begin{minted}[linenos, firstnumber=1, autogobble=true]{cpp}
+int main()
+{
+    typedef String<Dna> TSequence;
+    typedef Align<TSequence, ArrayGaps> TAlign;
+    
+    TSequence seq1 = "ATAAGCGTCTCG";
+    TSequence seq2 = "TCATAGAGTTGC";
+
+    TAlign align;
+    resize(rows(align), 2);
+    assignSource(row(align, 0), seq1);
+    assignSource(row(align, 1), seq2);
+    
+    int score = globalAlignment(align, Score<int, Simple>(0, -1, -1));
+    std::cout << "Score: " << score << std::endl;
+    std::cout << align << std::endl;
+    
+    std::cout << "Complement of sequence #1: ";
+    Iterator<TSequence, Rooted>::Type it = end(seq1);
+    for (goEnd(it); !atBegin(it); goPrevious(it))
+    {
+        std::cout << getValue(it);
+    }
+    std::cout << std::endl;
+
+    return 0;
+}    
+\end{minted}
+\captionof{listing}[Beispiel: Typisches SeqAn-Programm]{Beispiel --- Typisches SeqAn-Programm.
+
+Die Zeilen 3 und 4 sind durch die Verwendung von Template-Subclassing gekennzeichnet. In Zeile 3 wird eine Spezialisierung der String-Klasse spezielle für Nukleotide definiert. In Zeile 4 wird die Datenstruktur definiert, die sowohl als Ein- als auch Ausgabe für die Berechnung des Alignments in Zeile 14 dient. Der zweite Template-Parameter spezifiziert, in welcher Weise das Alignment intern dargestellt wird. Diese Wahl beeinflusst das Laufzeitverhalten für bestimmte Operationen.
+
+Die Zeilen 11 und 12 sind ein Beispiel für das globale Funktionen-Interface, denn die \mintinline{cpp}{assignSource}-Funktion ist semantisch eine Memberfunktion der \mintinline{cpp}{Align}-Klasse.\footnote{Tatsächlich ist die \mintinline{cpp}{assignSource}-Funktion eine Memberfunktion der \mintinline{cpp}{Gaps}-Klasse, was an dieser Stelle aber nicht zum Verständnis beiträgt.} Im Gegensatz dazu ist die globalAlignment technisch, wie auch semantisch, eine globale Funktion.
+
+Die \mintinline{cpp}{resize}-Funktion in Zeile 10 ist ein hervorragendes Beispiel für generische Programmierung, denn sie operiert auf jedem Datentyp, der in irgendeiner Weise in seiner Größe verändert werden kann. Tatsächlich ist das gesamte Programm ein Beispiel für generische Programmierung. Schließlich kann das Alignment für beliebige Elemente berechnet werden, wenn \mintinline{cpp}{String} in Zeile 3 entsprechend spezialisiert wird und der dort angegebene Datentyp den Gleichheitsoperator unterstützt.
+
+In Zeile 19 wird die Metafunktion \mintinline{cpp}{Iterator} aufgerufen. Diese Funktion wird zur Kompilierzeit ausgeführt und gibt ein \mintinline{cpp}{struct} mit dem Feld \mintinline{cpp}{Type} zurück, dass den Datentyp enthält, der einen Iterator für \mintinline{cpp}{TSequence} speichern kann. Der API-Anwender muss also nicht die konkrete Implementierung der \mintinline{cpp}{Iter}-Klasse kennen bzw. den korrekten Typ nennen.}
+\label{lst:seqan-typical}
+\end{center}
+
+\bigskip
+
+Würde man das obige Programm 1:1 nach Java übersetzen, würde das Programm in etwa wie folgt aussehen:
+
+\begin{center}
+\begin{minted}[linenos, firstnumber=1, autogobble=true]{java}
+private static class TSequence extends String<Dna> {};
+private static class TAlign extends Align<TSequence, ArrayGaps> {};
+
+public static void main(String[] args) {
+    TSequence seq1 = new TSequence("ATAAGCGTCTCG");
+    TSequence seq2 = new TSequence("TCATAGAGTTGC");
+
+    TAlign align = new TAlign();
+    align.setSize(2);
+    align.getRows().assignSource(seq1, 0);
+    align.getRows().assignSource(seq2, 1);
+
+    int score = Alignment.globalAlignment(align, new Score<Integer, Simple>(0, -1, -1));
+    System.out.println("Score: " + score);
+    System.out.println(align);
+
+    System.out.print("Complement of sequence #1: ");
+    for(Iterator<TSequence, Rooted> iterator = seq1.end(); iterator.hasPrevious();) {
+        System.out.print(iterator.prev());
+    }
+    System.out.print("\n");
+}
+\end{minted}
+\captionof{listing}[Beispiel: Typisches SeqAn-Programm in Java I]{Beispiel --- Unmittelbare Übersetzung eines typischen SeqAn-Programms in Java}
+\label{lst:seqan-typical-java1}
+\end{center}
+
+\bigskip
+
+Die unmittelbare Java-Übersetzung wirkt etwas künstlich. Ein Java-Entwickler würde wahrscheinlich die folgende mittelbare Variante als die für ihn am vertrautesten empfinden:
+
+\begin{center}
+\begin{minted}[linenos, firstnumber=1, autogobble=true]{java}
+public static void main(String[] args) {
+    String<Dna> seq1 = new String<Dna>("ATAAGCGTCTCG");
+    String<Dna> seq2 = new String<Dna>("TCATAGAGTTGC");
+
+    Align<String<Dna>, ArrayGaps> align = new Align<String<Dna>, ArrayGaps>(seq1, seq2);
+
+    int score = Alignment.computeGlobalAlignment(align, new Score<Integer, Simple>(0, -1, -1));
+    System.out.println("Score: " + score);
+    System.out.println(align);
+
+    System.out.print("Complement of sequence #1: ");
+    Iterator<String<Dna>> iterator = seq1.iterator();
+    while(iterator.hasPrevious()) {
+        System.out.print(iterator.previous());
+    }
+    System.out.print("\n");
+}
+\end{minted}
+\captionof{listing}[Beispiel: Typisches SeqAn-Programm in Java II]{Beispiel --- Mittelbare Übersetzung eines typischen SeqAn-Programms in Java}
+\label{lst:seqan-typical-java2}
+\end{center}
+
+
+
+
+
+\tableofcontents
+
+\lhead{\emph{Abbildungsverzeichnis}}
+\listoffigures
+
+%\input{Sections/sec-Dox}
+
+
+
+\input{Chapters/01_Motivation}
+
+%\input{Chapters/02_Forschungsstand}
+
+%\input{Chapters/03_Forschung}
+
+%\input{Chapters/04_Ergebnisse}
+
+%\input{Chapters/05_FazitAusblick}
+
+%\include{Appendices/app-Literatur}
+%\include{Appendices/app-Daten}
+%\include{Appendices/app-misc}
+
+
+\listoflistings
+
+\listoffigures
+
+\clearpage
+
+\printglossary[title=Glossar, toctitle=Glossar]
+
+\label{Bibliography}
+\lhead{\emph{Literaturverzeichnis}}  % Change the left side page header to "Bibliography"
+\bibliographystyle{plainnat}  % Use the "unsrtnat" BibTeX style for formatting the Bibliography
+\bibliography{Bibliography}  % The references (bibliography) information are stored in the file named "Bibliography.bib"
+
+\end{document}

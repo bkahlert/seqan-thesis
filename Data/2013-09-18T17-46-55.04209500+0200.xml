@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<cd>
+   <profile>
+      <studies>Bioinformatik</studies>
+      <workStyle>pragmatic</workStyle>
+      <usageDurationNumber>4</usageDurationNumber>
+      <usageDurationUnit>years</usageDurationUnit>
+      <proficiency>nein, ich verwende es zu selten</proficiency>
+      <similiarSystems>Biopython</similiarSystems>
+      <mainPurpose>Im Moment gar nicht, für meine Bachelorarbeit und in geringerem Umfang für meine Masterarbeit</mainPurpose>
+      <typicalProducts>ein kleines Tool, dass ich als Teil einer Pipeline verwende</typicalProducts>
+      <durability>temporary</durability>
+      <exploringPercentageTime>40</exploringPercentageTime>
+      <implementingPercentageTime>10</implementingPercentageTime>
+      <understandingPercentageTime>40</understandingPercentageTime>
+      <reorganisingPercentageTime>10</reorganisingPercentageTime>
+      <viscosity>Dinge die sich auf Datenstrukturen oder Module beziehen, die ich noch nie bzw. nur oberflächlich benutzt habe.</viscosity>
+      <workStepUnit>Für sehr spezifische Aufgaben, wie zB Alignment oder laden von GTF files passiert sehr viel in eine Zeile code. Das erzeugen von Iteratoren dagegen erfordert mehr code als vernünftig erscheint.</workStepUnit>
+      <hardMentalOperations>Das erstellen der richtigen Typen mit Hilge von Metafunktionen kann sehr kompliziert sein.</hardMentalOperations>
+      <errorProneness>besonders häufig mache ich Fehler die mit const zu tun haben oder bei denen ich template parameter nicht richtig gesetzt habe</errorProneness>
+      <domainCorrespondence />
+      <roleExpressiveness>Es ist oft schwierig heraus zu finden welche Funktionen auf welche Objekte angewendet werden können und was dann die richtige Funktionssiganatur ist. Metafunktionen kopiere ich oft nur ohne wirklich zu verstehen was sie tun.</roleExpressiveness>
+      <progressiveEvaluation>Meistens lassen sich Dinge nicht überprüfen, weil der Code nicht kompiliert. Das Prototypen von Dingen fällt mir oft sehr schwer.</progressiveEvaluation>
+      <provisionality>Mir fällt es sehr schwer zu experimentieren, weil das handling von Ein- und Ausgabe schwierig ist und darum Zwischenergebnise sich nicht immer leicht überprüfen lassen.</provisionality>
+      <prematureCommitment>Oft müssen Entscheidungen über Typen früh getroffen werden oder später immer wieder geändert werden.</prematureCommitment>
+      <consistency />
+      <abstractionLevel />
+      <learningStyle>Die Tutorial sind zum größten Teil gut. Das Suchen in der API Doku ist aber sehr umständlich.</learningStyle>
+      <personal>Viele Dinge lassen sich auf sehr verschiedene Arten erledigen (zB zugriff auf Detein mit File Objekte oder c-Streams) das schafft Verwirrung.</personal>
+      <questionnaire>Nein, weil ich SeqAn nur äußerst selten benutze und viele der Antworten sich damit hauptsächlich auf den Workshop beziehn bzw. spezifische Probleme, die ich in den letzen zwei Tagen hattte.</questionnaire>
+   </profile>
+</cd>

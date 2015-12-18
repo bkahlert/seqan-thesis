@@ -1,0 +1,383 @@
+\glsresetall
+\chapter{Fazit}
+
+%only show sections in toc from here on
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\titleformat{\section}
+  {\normalfont\Large\bfseries}{\thesection}{1em}{}
+\renewcommand{\sectionbreak}{}
+\titleformat{\subsection}
+  {\normalfont\large\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}[runin]
+  {\normalfont\normalsize\bfseries}{}{0em}{}
+
+\section{Ausgangslage}
+Der Ausgangspunkt dieser Arbeit war die für notwendig erachtete Usability-Verbesserung der \acrshort{api} der bioinformatischen Softwarebibliothek SeqAn. Der spezielle Entwurf von SeqAn, durch den auf SeqAn basierte Anwendungen extrem performant sind, besteht in der Verwendung der C\texttt{++}-Templatemetaprogrammierung. Dieses Verfahren blieb jedoch in der seit etwa dem Jahr 2000 erforschten API-Usability vollkommen unbeleuchtet, wodurch die geplante API-Usability-Verbesserung nicht ohne Weiteres vorgenommen werden konnte.
+
+
+
+\section{Zielsetzung}
+Das Ziel meines Vorhabens bestand also darin, die API-Usability von SeqAn zu erforschen, um mit diesem Wissen SeqAns Usability zu verbessern und verallgemeinerbare Erkenntnisse für andere auf Templatemetaprogrammierung basierenden APIs zu gewinnen. Dabei galt es darauf zu achten, dass die Verbesserungen nicht nur den SeqAn-Anwendern --- also Informatikern und Bioinformatikern --- nutzen, sondern eine hohe Usability auch für SeqAn-Endanwender --- also Biologen, Medizinern und anderen Lebenswissenschaftlern --- hergestellt wird.
+
+
+
+\section{Methode}
+Für die Erforschung von SeqAns API-Usability habe ich mich für eine explorative, empirische Fallstudie unter Verwendung der \gls{gtm} nach \cite{strauss1990basics} entschlossen (siehe Abschnitte \ref{sec:gtm} und \ref{sec:phase4}). Die \gls{gtm} hat den Vorteil, dass sie kaum inhaltliche Annahmen verlangt.
+
+Innerhalb einiger Wochen wurde deutlich, dass es um SeqAns Usability schlechter bestellt war als angenommen (siehe \sref{sec:phase1}). Dies war besonders verwunderlich, wurde man doch in SeqAn-Präsentationen nicht müde, dessen Benutzerfreundlichkeit zu bewerben. Um nicht Gefahr zu laufen, tiefer liegende Usability-Probleme zu übersehen, mussten die offensichtlicheren, groben Probleme zunächst beseitigt werden. Dazu nutzte ich eine Online-Umfrage, Interviews, einen Feedback-Zettel und eine vereinfachte \gls{he}. Beseitigt habe ich in Zusammenarbeit mit der Bioinformatik-Arbeitsgruppe in diesem Zuge eine Reihe von \gls{oobe} relevanten Problemen, insbesondere durch die Verbesserung der SeqAn-Installationsanleitungen und -Tutorials.
+
+Die speziellen organisatorischen Rahmenbedingungen (siehe \sref{sec:rahmenbedingungen}) erforderten in Verbindung mit der \gls{gtm}, eine Datenerhebung, bei der die SeqAn-Anwender im Zentrum der Betrachtung stehen, so wenig wie möglich beeinflusst werden und sich besonders reichhaltige Daten ergeben. Dazu entwickelte ich ein kombiniertes Datenerhebungsverfahren, bei dem sowohl subjektive, als auch objektive Daten erhoben werden (siehe \sref{sec:phase2}). Für die subjektiven Daten kamen eine Gruppendiskussion, in der bis dato erarbeitete Ergebnisse thematisiert wurden, und ein eigens entwickelter Fragebogen, der auf dem Cognitive Dimensions Framework basiert, zum Einsatz. Für die Erhebung der objektiven Daten entwickelte ich ein leistungsfähiges, automatisiertes, plattformübergreifendes und weitgehend transparent arbeitendes Verfahren, das seinen angestrebten Zweck sehr gut erfüllte.
+
+Für die integrierte, \gls{gtm}-basierte Analyse dieser unterschiedlichen und teils hochstrukturierten Daten entwickelte ich das qualitative Datenanalysewerkzeug \textit{\gls{apiua}}. Der im \sref{sec:apiua} beschriebene \gls{apiua} war ursprünglich als reine Datenvisualisierungslösung geplant, entwickelte sich aber schließlich zu einer Anwendung, die eine Reihe von Funktionen bietet, die selbst beim ``Platzhirsch'' \textit{ATLAS.ti} nicht zu finden sind, aber für meine Forschung unerlässlich waren.
+
+Meine Forschung war durch einen hochdynamischen Prozess gekennzeichnet, bei dem sich die Datenerhebung und -analyse, der Werkzeugbau und das Erlernen der \gls{gtm} gegenseitig beeinflussten. Erschwert wurde mein Vorhaben durch die stetige Weiterentwicklung von SeqAn und der Weiterentwicklung der Programmiersprache C\texttt{++}. Nach meiner Kenntnis ist das Zustandekommen der Ergebnisse mittels selektiven Kodierens und die Präsentation der im anschließenden Abschnitt zusammengefassten Ergebnisse in Form einer \gls{gt} einmalig in der API-Usability-Forschung. Zwar konnte ich meine Ergebnisse nur teilweise empirisch validieren, jedoch habe ich sehr großen Wert auf die Verfahrensdokumentation gelegt. Durch die eindeutige Identifikation sämtlicher von mir präsentierter Konzepte und Zitate mit Hilfe von \glslink{uri}{APIUA-URIs} kann meine Argumentation nicht nur inhaltlich, sondern auch technisch lückenlos nachvollzogen werden. Dieser Grad der Transparenz erfüllt die Anforderungen an die Veröffentlichung und Zugänglichkeit von Primärdaten gemäß \textit{Open Science}.
+
+% Derartiges Grounding in ähnlichen Arbeiten (\citep{Grill:2012jm}, \citep{Piccioni:2013uq}, \citep{Tenny:2011jp}) \cite{Stylos:2008cu} nicht anzutreffen
+
+
+
+
+
+\section{Ergebnisse}
+Die Ergebnisse dieser Arbeit umfassen
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+  \item eine Theorie über die Entstehung und Auswirkungen von Entwurfsentscheidungen in SeqAn,
+  \item Verbesserungen der API-Usability von SeqAn,
+  \item das Datenanalysewerkzeug \acrlong{apiua},
+  \item eine wissenschaftliche Literaturstudie zu API-Usability und
+  \item verallgemeinerbare wissenschaftliche Erkenntnisse
+\end{itemize}
+
+und werden im Folgenden erläutert.
+
+\subsection{Theorie über die Entstehung und Auswirkungen von Entwurfsentscheidungen in SeqAn}
+%Mit meiner Forschung konnte ich zeigen, dass die Grundursache für SeqAns Entwurf in dem ursprünglichen Anwendungszweck begründet war. Erst dieser hatte die Überbetonung der Performance zur Folge, unter der SeqAns Usability litt. Verstärkt wurden die sich daraus ergebenden Probleme durch das geringe Verständnis bzw. die Uneinigkeit der SeqAn-Entwickler über SeqAns Anwenderschaft. Die Auseinandersetzung mit der Usability fand nicht im erforderlichen Maße statt. Gründe dafür waren ein gewisses Maß an Bauchgefühl-Usability und die fehlende Forschung bzgl. der Usability-Auswirkungen von Templatemetaprogrammierung und generischer Programmierung. Erst die Verbreiterung des Einsatzgebietes von SeqAn auf kommerzielle Anwendungen zwangen die SeqAn-Entwickler dazu, Usability-Engineering aktiver zu betreiben. Das im VIP-Projektantrag formulierte Ziel, SeqAn einer breiteren Masse an Anwendern benutzerfreundlich zur Verfügung zu stellen, war ein wichtiger Schritt in diese Richtung. Allerdings wurde dieser Schritt nicht von allen Beteiligten in gleichem Maße getragen, was eine potentielle Gefährdung für den kommerziellen Erfolg darstellt.
+
+Bei meinem im \sref{sec:gt} vorgestellten Ergebnis handelt es sich um eine \gls{gt}. Sie beginnt mit der Entwicklung von SeqAn durch Andreas Gogol-Döring \citep{GogolDoring:2009vz}, der das ultimative \code{apiua://code/-9223372036854774864} \textit{Performance} verfolgte, welches er durch die \textit{explizite-empirische} \code[apiua://code/-9223372036854774919]{architektonische Entwurfsentscheidung} \code{apiua://code/-9223372036854775515} nachweislich erreichte.
+
+Seine übrigen Entwurfsentscheidungen dienten, zusammenfassend betrachtet, der \textit{Usability}. Im Unterschied zur Templatemetaprogrammierung basierten \code{apiua://code/-9223372036854775579} und \code{apiua://code/-9223372036854775412} auf einer \textit{expliziten-argumentativen}, und \code{apiua://code/-9223372036854775611} sowie \code{apiua://code/-9223372036854774838} nur auf einer \textit{expliziten-intuitiven} \code{apiua://code/-9223372036854774839}. Die \code[apiua://code/-9223372036854775215]{Frameworkgestalt} von und die \code{apiua://code/-9223372036854774848} in SeqAn, wurden von dem Autor nur \textit{implizit} thematisiert.
+
+Geprägt waren diese intuitiven und argumentativen Entwurfsentscheidungen einerseits durch die persönlichen Präferenzen des Autors und andererseits durch die unzureichende Berücksichtigung der Anforderungen zukünftiger \code[apiua://code/-9223372036854774893]{SeqAn-Anwender}. Folglich erweckte der SeqAn-Entwurf bei seinen Anwendern die \code[apiua://code/-9223372036854774827]{produktbedingte Erwartung} einer performanten, objektorientierten und benutzerfreundlichen Library. Jedoch war SeqAn keine Library, sondern ein Framework, verwendete keine objektorientierte Programmierung, sondern Templatemetaprogrammierung und hatte schwere Defizite in Bezug auf seine Usability.
+
+Fasst man alle Ursachen zu einer zusammen, kommt man zu dem Schluss, dass es zwar gelungen ist, SeqAn-basierte Programme extrem schnell zu machen, es jedoch nicht gelungen ist, die übrigen Erwartungen der Anwender --- insbesondere bezüglich der \code[apiua://code/-9223372036854774904]{Wiederverwendbarkeit} bestehender \code[apiua://code/-9223372036854775494]{paradigmatisch geprägter} Vorkenntnisse --- zu erfüllen, was sich in der Aussage ``SeqAn makes me feel stupid''\citepurl{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/errorProneness} widerspiegelt.
+
+In Bezug auf die Anwenderschaft ergaben sich durch die getroffenen Entwurfsentscheidungen eine Reihe von \code[apiua://code/-9223372036854774939]{Usability-Problemen}, die sich in \code[apiua://code/-9223372036854774828]{produktbedingte Erwartungskonformitätsprobleme} und in \code[apiua://code/-9223372036854774915]{Struktur-}, \code[apiua://code/-9223372036854775404]{Dokumentations-}, \code[apiua://code/-9223372036854774914]{Laufzeit-}, sowie \code[apiua://code/-9223372036854775396]{Werkzeugunterstützungsprobleme} unterteilen lassen.
+
+Trafen Anwender auf Usability-Probleme, so wurden \code{apiua://code/-9223372036854775414}, die auf den anwenderseitigen \code[apiua://code/-9223372036854775600]{Arbeitsstilen} und \code[apiua://code/-9223372036854775494]{paradigmatischen Prägungen} beruhen, häufig behindert. Dabei sind besonders die \code[apiua://code/-9223372036854775506]{experimentelle Hypothesenüberprüfung}, das systematische \code{apiua://code/-9223372036854775163}, das pragmatische \code{apiua://code/-9223372036854775372}, die \code{apiua://code/-9223372036854774900} und die \code{apiua://code/-9223372036854775145} zu nennen.
+
+Andererseits zwangen die bestehenden Usability-Probleme die Anwender dazu, auf andere Strategien zurückzugreifen. Zu diesen Strategien gehören das \code{apiua://code/-9223372036854775144} und das opportunistische \code[apiua://code/-9223372036854775508]{blinde Kopieren}.% und das \code{apiua://code/-9223372036854775098}.
+
+Die Folgen erstreckten sich auf eine deutlich verringerte \code{apiua://code/-9223372036854774824} SeqAns, eine teils ausgebremste, teils gestörte \code{apiua://code/-9223372036854775455} und die Empfindung auffallend negativer \code{apiua://code/-9223372036854775441}.
+
+
+Meine Ergebnisse haben die von allen Stakeholdern geteilte Hypothese, dass die Entwurfsentscheidung Templatemetaprogrammierung eine der Hauptursachen für SeqAns schlechte Usability ist, empirisch bestätigt --- ohne für alternative Erklärungen verschlossen gewesen zu sein.
+
+
+Tritt man einen Schritt zurück, stellt man fest, dass Performance kein zur Usability gleichgewichtiges Ziel, sondern das  Superziel für SeqAn gewesen ist. Im Unterschied zur empirisch belegten Performance, wurde die Usability lediglich ``herbei argumentiert'' oder basiert auf Bauchgefühlentscheidungen. Wesentliche Ursache dafür war SeqAns hauptsächlicher Einsatzzweck im unausgesprochenen Kontext der Bioinformatik-Arbeitsgruppe, bei dem es um das Verfassen wissenschaftlicher Abschlussarbeiten und Veröffentlichungen ging. In diesem Zusammenhang spielte die Usability eine untergeordnete Rolle, weil Experten, die den damaligen Anwendern helfen konnten, jederzeit greifbar waren. Erst die Ausweitung des Einsatzzwecks auf kommerzielle Anwendungen im Rahmen des durch das BMBF geförderte VIP-Projekt (siehe \sref{sec:rahmenbedingungen}) bescherte der Usability ein neues Gewicht --- und dem SeqAn-Team eine aufwändige Nachkorrekturphase.
+
+Ein weiterer Grund für SeqAns Entwurf lag in den unterschiedlichen Vorstellungen der SeqAn-Entwickler von SeqAns Anwenderschaft begründet, was sich besonders in der von den SeqAn-Entwicklern unterschiedlich beantworteten Frage widerspiegelt, ob API-Endanwender zu dieser Gruppe gehören, oder nicht. Ungeachtet dessen, konnte ich feststellen, dass das Bewusstsein für die Wichtigkeit einer hohen Usability nicht bei jedem Beteiligten gleich ausgeprägt ist. Dies zeigt sich speziell am Phänomen des \textit{technischen Wegargumentierens}.
+
+
+\subsection{Verbesserungen der API-Usability von SeqAn}
+Für die Verbesserung der API-Usability von SeqAn haben die Bioinformatik-Arbeitsgruppe und ich umfangreiche Maßnahmen umgesetzt.
+
+Um meine Forschungsergebnisse nicht durch grobe Usability-Probleme zu gefährden, wurden in einer ersten Verbesserungsphase (siehe \sref{sec:phase1}) besonders der SeqAn-Entwicklungsprozess überarbeitet, sowie die SeqAn-Installationsanleitungen und -Tutorials umfassend verbessert.
+
+Auf der Grundlage meiner \gls{gtm}-Forschungsergebnisse habe ich zehn priorisierte Maßnahmen vorgeschlagen, die die Verbesserung der Usability zum Ziel hatten (siehe \sref{sec:seqan-api-usability-verbesserung}). Unter diesen, befinden sich vier Maßnahmen mit besonders hoher Priorität, von denen drei vollständig realisiert wurden (siehe \sref{sec:seqan-api-usability-vorschlaege}):
+\begin{enumerate}
+  \item Die Dokumentation\footnote{\url{http://docs.seqan.de/seqan/master/}} wurde von mir technisch vollkommen neu entwickelt und gemeinsam mit meinen Kollegen inhaltlich überarbeitet. Dazu wurde das neue Dokumentationsformat Dox entwickelt, ein Gesamtüberblick erarbeitet sowie Seitenaufbau, Beispiele, Suchfunktion und Suchmaschinen-Indexierbarkeit, Darstellung und die Integration in andere Lernressourcen verbessert. Außerdem wurde das Konzept der \code{apiua://code/-9223372036854775413} gesamtheitlich innerhalb der Dokumentation implementiert. Dies soll die \code{apiua://code/-9223372036854774824} von SeqAn fördern, indem Templatemetaprogrammierung-bedingte, neue Sprachentitätstypen, wie Interface-Metafunktionen, auch als solche benannt und erklärt werden. Ergänzt wird die Verbesserung der Dokumentation durch die bereits erwähnten generalüberholten Installationsanleitungen und Tutorials.
+
+  \item SeqAn war zunächst ein Framework und kann nun auch als Library verwendet werden, indem insbesondere Vorwärtsdeklarationen beseitigt wurden. So simpel dieser Punkt klingen mag, so fundamental war er auch für potentielle SeqAn-Anwender, die ihren bestehenden Build-Prozess nicht anpassen wollten oder konnten.
+  
+  \item SeqAn wurde so erweitert, dass es mit Hilfe weiterer geschaffener technischer Lösungen in die Workflow-Engine KNIME integriert werden konnte. Damit wurde eine Möglichkeit geschaffen, API-Endanwendern mit minimalen Programmierfähigkeiten die Nutzung von SeqAn zu erlauben.
+\end{enumerate}
+
+Außerdem abgeschlossen wurde die Einrichtung einer Kollaborationsplattform für den engen Austausch zwischen SeqAn-Entwicklern und -Anwendern.
+
+Für die vierte wichtige Maßnahme, die in der Angleichung von SeqAn an die STL mittels CRTP besteht, habe ich die Machbarkeit gezeigt. Jedoch konnte diese Maßnahme aus Zeitgründen leider nicht mehr umgesetzt werden. Durch anstehende Erweiterungen des C\texttt{++}-Sprachstandards werden die mit dieser Maßnahme in Verbindung stehenden Usability-Probleme --- insbesondere \code{apiua://code/-9223372036854775396} --- aber teilweise entschärft. Die übrigen, weniger wichtigen Usability-Verbesserungen konnten, ebenfalls aus Zeitgründen, nicht umgesetzt werden und sind Bestandteil des Ausblicks.
+
+
+\subsection{Datenanalysewerkzeug \acrlong{apiua}}
+Die Fülle meiner erhobenen Daten (siehe \sref{sec:phase2}) erforderte die Verwendung einer qualitativen Datenanalysesoftware. Jedoch sprach gegen die Verwendung eines der kommerziell verfügbaren Produkte die teilweise hochstrukturierte Gestalt meiner Daten, für die es keine Unterstützung gab. Darüber hinaus haben alle großen qualitativen Datenanalyseprodukte nicht zu vernachlässigende Schwächen in Bezug auf ihren Einsatz als \gls{gtm}-Software, wodurch ich die Tiefe und Intensität meiner Analyse gefährdet sah (siehe \sref{sec:apiua}). Um die durch die \gls{gtm} ohnehin schon stark geforderte Sorgfalt und Disziplin des Forschers nicht noch mehr durch ein unzureichend geeignetes Datenanalysewerkzeug unnötig zu strapazieren, habe ich ein eigenes Datenanalysewerkzeug namens \acrfull{apiua} entwickelt.
+
+\Gls{apiua} basiert auf der \gls{rcp}, die wiederum die Grundlage für die bekannte Entwicklungsumgebung \gls{eclipse} darstellt. Dadurch kann das Werkzeug allgemein, aber besonders mit Hinblick auf die Unterstützung weiterer Datenformate, beliebig erweitert werden.
+
+Zu den weiteren, im Vergleich zur weitverbreiteten Datenanalysesoftware ATLAS.ti exklusiven Funktionen gehören:
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+  \item \acrshort{uri}-referenzierbare Rohdaten und Forschungsergebnisse\footnote{Diese Funktion ermöglichte die Verlinkung von Rohdaten und Forschungsergebnissen in dieser Arbeit (siehe \sref{sec:notationen}).}
+  \item hierarchische Kodes
+  \item filterbare Kodes
+  \item automatische Farbkodierung von Kodes
+  \item verallgemeinerbare Relationen
+  \item zusammenfassbare Relationen
+  \item in den Daten verankerbare Relationen
+  \item axiales und selektives Kodieren
+  \item Speicherung und Wiederherstellung von Forschungssitzungen
+\end{itemize}
+
+\gls{apiua} ist bei weitem nicht perfekt. Jedoch war dieses Werkzeug für die in dieser Arbeit präsentierte Forschung unverzichtbar. Der Quellcode und Hinweise zur Installation von \gls{apiua} befinden sich unter \url{https://github.com/bkahlert/api-usability-analyzer}.
+
+
+\subsection{Wissenschaftliche Literaturstudie zu API-Usability}
+Im Rahmen der Erforschung der API-Usability von SeqAn stellte ich fest, dass es zwar bereits drei Literaturstudien zum Thema API-Usability gibt, sich diese aber ausschließlich auf Teilaspekte der API-Usability oder auf Teilaspekte API-Usability-Evaluation beschränken (siehe \href{sec:forschungsstand}{Kapitel 2}). Eine wirklich holistische Literaturstudie, die Erkenntnisse aus der ``klassischen'' Usability und andere wichtige Erkenntnisse, wie Programmverständnismodelle, das Cognitive Dimensions Framework oder Personas, nicht ignoriert, fehlte bis dato. Ergänzt wird meine Literaturstudie durch die erste mir bekannte Beschreibung und systematische Einordnung einer Vielzahl API relevanter Werkzeuge.
+
+Ich rechne damit, dass meine Arbeit zukünftigen Forschern die Einarbeitung in das Gebiet der API-Usability-Forschung erleichtert.
+
+
+\subsection{Verallgemeinerbare wissenschaftliche Erkenntnisse}
+
+\subsubsection{Methodische Erkenntnisse}
+Meine Erkenntnisse und die Generizität meiner Methode legen nahe, dass sich die in dieser Arbeit vorgestellte Forschungsmethode (siehe Abschnitte \ref{sec:datenerhebung} und \ref{sec:phase4}) sehr gut für die Erforschung \textit{un}typischer APIs eignet. Die Generizität ergibt sich einerseits aus der breit angelegten Datenerhebung, und andererseits aus dem extrem offenen Forschungsansatz der \gls{gtm} (siehe \sref{sec:validierung}).
+
+Meine Forschung bietet Grund zur Annahme, dass eine gut vorbereitete Gruppendiskussion nicht nur der Orientierung, sondern auch der Vertiefung bisher erworbener Erkenntnisse dienlich ist.
+\\Hingegen kann ich Forschern nur raten, den Einsatz des Cognitive Dimension Framework wohl zu überlegen und in jedem Fall vorher für den eigenen Einsatzzweck zu testen. Den Einsatz des CDF-Fragebogens zu Explorationszwecken kann ich hingegen empfehlen. Der von mir entwickelte Fragebogen eignet sich für die Exploration von APIs.
+\\Programmierfortschritte-Daten scheinen eine extrem wertvolle Datenquelle zu sein. Deren Analyse erfordert allerdings einen hohen Grad an theoretischer Sensibilität und ein geeignetes Datenanalysewerkzeug, wie \gls{apiua}.
+
+Ein erfolgsversprechender Ansatzpunkt für die Evaluation von APIs ist die Berücksichtigung der anwenderseitigen \code[apiua://code/-9223372036854775494]{paradigmatischen Prägung} und der API-seitigen \code{apiua://code/-9223372036854775413}.
+
+
+\subsubsection{Softwaretechnische Erkenntnisse}   
+\begin{enumerate}
+  \item Die Entwicklung von SeqAn hat gezeigt, dass nicht-empirische Entwurfsentscheidungen nicht zwingend in das Erreichen erdachter Ziele resultiert. Ist es \textit{tatsächlich} so, dass ein Entwurfsziel primär und die anderen sekundär sind, deuten meine Forschungsergebnisse darauf hin, dass die sekundären Entwurfsentscheidungen nicht gründlich genug umgesetzt werden, im Zweifel unterliegen und zu schweren bis katastrophalen Problemen führen können.
+  
+  Im Falle von SeqAn stellte Performance das primäre Ziel und Usability de facto das sekundäre Ziel dar (siehe \sref{sec:gt}).
+  
+  \item Ein Prioritätenwechsel, wie bei SeqAn die neue Betonung der Usability (siehe \sref{sec:gt-urursache}), kann zur Folge haben, dass für tolerierbar gehaltene oder gar nicht wahrgenommene Usability-Probleme plötzlich eine große Wichtigkeit bekommen. Die nachträgliche Diagnose und Behebung solcher Usability-Probleme kann sehr aufwändig sein. Meine Arbeitszeit erstreckte sich über knapp vier Jahre. Hinzu kamen die unzähligen Personenmonate, die meine SeqAn-Kollegen aufbrachten. %Dieser enorme Kostenaufwand ist unter dem Namen \textit{Rule of Ten} bekannt \citep[u.a.][]{clark1991product,boehm1981software}.
+
+  \item Bei der Entwicklung eines Produkts ist ein gründliches und gemeinsames Verständnis über die (zukünftige) Anwenderschaft existenziell wichtig. Dies ist bereits in der Literatur bekannt \citep[u.a.][]{Clarke:2004te,Henning:2007kg}.
+  
+  Im SeqAn-Team lag nur ein unzureichendes Verständnis von den Anwendern vor, worin eine der Hauptursachen für die entdeckten Probleme bestand. Des Weiteren gab es Uneinigkeit in der Frage, ob Entwickler mit wenig Programmiererfahrung zur Anwenderschaft gehören. Dies führte dazu, dass bekannte Anwendungsschwierigkeiten nicht als zu behebende bzw. zu vermeidende Usability-Probleme eingestuft wurden. Meine Beobachtungen bestätigen also die Notwendigkeit, eine fundierte und gemeine Vorstellung von den Zielgruppen zu haben, wenn Usability-Probleme vermieden werden sollen.
+\end{enumerate}
+
+
+\subsubsection{Usability-Problem-bezogene Erkenntnisse}
+Meine Forschungsergebnisse zeigen, dass Templatemetaprogrammierung und generische Programmierung verwendende APIs prädestiniert für das Auftreten bestimmter Usability-Probleme sind. Diese Probleme bestehen darin, dass derartige APIs Dinge anders lösen, als es die API-Anwender erwarten. Werden dabei Sprachentitätstypen benutzt, welche die Anwender nicht kennen, wird das Problem verschärft. Eine weitere Eskalation tritt dann auf, wenn bestimmte API-Konzepte nicht Bestandteil der verwendeten Programmiersprache sind und simuliert werden müssen. Dann liegt wahrscheinlich auch keine Unterstützung dieser Konzepte durch das Entwicklungswerkzeug vor, was eine weitere Problemquelle darstellt. Außerdem erhöht generische Programmierung die Wahrscheinlichkeit, dass syntaktische Konstrukte verwendet werden, die dem Anwender unbekannt sind.
+    
+    All diese Probleme treten mit hoher Wahrscheinlichkeit auf, wenn sie nicht proaktiv von den API-Entwicklern adressiert werden.
+
+Der Großteil der von mir entdeckten Probleme lässt sich unterschiedlich stark verallgemeinern:
+
+\begin{addmargin}[1em]{0em}
+\begin{description}\raggedright
+  \item[Allgemeine Probleme] \hfill \\ Probleme, die in jeder API auftreten können.
+  \begin{description}\raggedright
+    \item[\codebullet{apiua://code/-9223372036854774915}] \codetext{apiua://code/-9223372036854774915} \\
+    \code{apiua://code/-9223372036854775623}, \code{apiua://code/-9223372036854775567}, \code{apiua://code/-9223372036854774861}, \code{apiua://code/-9223372036854775533}
+    
+    \item[\codebullet{apiua://code/-9223372036854775404}] \codetext{apiua://code/-9223372036854775404} \\
+    \code{apiua://code/-9223372036854775581}
+    
+    \item[\codebullet{apiua://code/-9223372036854774914}] \codetext{apiua://code/-9223372036854774914} \\
+    \code{apiua://code/-9223372036854775615}
+  \end{description}
+  
+  \item[Probleme der Templatemetaprogrammierung] \hfill \\ Probleme, die in APIs auftreten können, welche Templatemetaprogrammierung einsetzen.
+  \begin{description}
+    \item[Inhärente Probleme] \hfill \\ Probleme, mit deren Auftreten bei der Verwendung von Templatemetaprogrammierung gerechnet werden muss und die proaktiv ausgeschlossen werden müssen.
+    \begin{description}
+      \item[\codebullet{apiua://code/-9223372036854774915}] \codetext{apiua://code/-9223372036854774915}\footnote{Da ich mich mit einer C\texttt{++}-basierten Library beschäftigt habe, gelten einige Usability-Probleme möglicherweise nicht bei Programmiersprachen, die nicht über bestimmte Sprachfeatures, wie die Überladbarkeit von Operatoren, verfügen. Andere Probleme lassen sich hingegen leicht auf die eigene Programmiersprache übertragen. So würde das Problem \code{apiua://code/-9223372036854775633} im Falle von Java beispielsweise \textit{Inkonsistenzen bzgl. JDK} lauten, denn der Kern dieses Problems ist nicht die STL, sondern die Enttäuschung der sich aus der \code[apiua://code/-9223372036854775494]{paradigmatischen Prägung} ergebenden Erwartungen.} \\
+      \code{apiua://code/-9223372036854775080}, \code{apiua://code/-9223372036854775633}, \code{apiua://code/-9223372036854775413}, \code{apiua://code/-9223372036854775279}, \code{apiua://code/-9223372036854775405}
+    
+      \item[\codebullet{apiua://code/-9223372036854775404}] \codetext{apiua://code/-9223372036854775404} \\
+      \code{apiua://code/-9223372036854775280}, \code{apiua://code/-9223372036854775544}
+    
+      \item[\codebullet{apiua://code/-9223372036854774914}] \codetext{apiua://code/-9223372036854774914} \\
+      \code{apiua://code/-9223372036854775100}
+  
+      \item[\codebullet{apiua://code/-9223372036854775396}] \codetext{apiua://code/-9223372036854775396} \\
+      \code{apiua://code/-9223372036854775148}
+    \end{description}
+  
+    \item[Mögliche Probleme] \hfill \\ Probleme, die mit einer gewissen Wahrscheinlichkeit --- insbesondere im Hinblick auf generische Programmierung --- auftreten.
+    \begin{description}
+      \item[\codebullet{apiua://code/-9223372036854774915}] \codetext{apiua://code/-9223372036854774915} \\
+      \code{apiua://code/-9223372036854775116}, \code{apiua://code/-9223372036854774846}, \code{apiua://code/-9223372036854775057}
+    
+      \item[\codebullet{apiua://code/-9223372036854775404}] \codetext{apiua://code/-9223372036854775404} \\
+      \code{apiua://code/-9223372036854775572}, \code{apiua://code/-9223372036854775577}, \code{apiua://code/-9223372036854775504}, didaktische Lernressourcen wie \code{apiua://code/-9223372036854775271}
+    \end{description}
+  \end{description}
+\end{description}
+\end{addmargin}
+
+
+\section{Konklusion}
+
+Ausgehend von dem Zustand, den SeqAn in Bezug auf seine Usability hatte, bestand das Ziel dieser Arbeit in der Verbesserung dieser Usability. Dieses Ziel wurde erreicht, indem ich --- mittels einer umfassenden Datenerhebung und einem eigens für die \gls{gtm}-basierte Datenanalyse entwickelten Analysewerkzeug --- eine \gls{gt} über die Entstehung und Auswirkungen von Entwurfsentscheidungen in SeqAn entwickelte. Diese bildete wiederum die Grundlage für die Formulierung von Usability-Verbesserungs-Vorschlägen, die ich erfolgreich gemeinsam mit meinen SeqAn-Kollegen zu einem großen Teil umgesetzt habe. Im Zuge dieser Arbeit entstand außerdem eine breite und umfassende wissenschaftliche Literaturstudie. Zu guter Letzt konnte ich einen Beitrag zur wenig erforschten API-Usability leisten, die für die Entwickler anderer APIs, insbesondere auf Templatemetaprogrammierung-basierender APIs von Wert sind. Die Anzahl an Arbeiten mit vergleichbar konkreten Ergebnissen für den Entwurf von APIs ist überschaubar\footnote{Im \sref{sec:forschung-einzelne-ergebnisse} nenne ich einige. Ganz besonders hervorzuheben sind die Arbeiten von Jeffrey Stylos \citep{Stylos:2008jt,Stylos:2007jb,Ellis:2007kv,Stylos:2009ts}.}.
+%Benennung (\sref{sec:naming}), Methodenplatzierung \cite{Stylos:2008jt}, Konstruktoren \cite{Stylos:2007jb}\citep{Ellis:2007kv}, Diss \citep{Stylos:2009ts}
+
+Dennoch gibt es einiges zu tun. Das nächste und zugleich letzte Kapitel dieser Arbeit befasst sich mit Empfehlungen, welche die API-Usability-Forschung weiter voranbringen und die softwaregestützte qualitative Forschung mittels \gls{gtm} inspirieren soll. Zugleich ist die Usability-Verbesserung von SeqAn noch nicht abgeschlossen. Abgesehen von den noch nicht umgesetzten Usability-Verbesserungs-Maßnahmen, gilt es noch eine Einsicht im SeqAn-Team zu etablieren: Die Ausweitung des Einsatzgebietes von SeqAn vom akademischen auf den kommerziellen Bereich erfordert zukünftig eine zur Performance gleichwertige Priorisierung der Usability, um erneute hohe Diagnose- und Behebungskosten zu vermeiden und damit den Erfolg von SeqAn zu sichern. Zu dieser Einsicht soll diese Dissertation beitragen. 
+ 
+
+
+
+
+
+
+
+
+
+
+\chapter{Ausblick}
+\label{sec:ausblick}
+
+Dieses abschließende Kapitel greift die im vorangegangen Kapitel zusammengefassten Ergebnisse meiner Forschung auf und stellt Vorschläge für mögliche weitere Forschungsvorhaben vor.
+
+\section{API-Usability}
+
+In diesem Abschnitt unterbreite ich Forschungsfragen, die sich auf das Thema API-Usability beziehen. Genauer: Fragen in Bezug auf API-Usability-Probleme und die API-Usability-Evaluation. 
+
+\subsection{API-Usability-Probleme}
+
+%In den Abschnitten \ref{sec:seqan-api-usability-vorschlaege} und \ref{sec:seqan-api-usability-verbesserung} habe ich Verbesserungsvorschläge und deren Umsetzung diskutiert.
+Das Usability-Problem \code{apiua://code/-9223372036854775057} befasst sich mit der Übergabe von Parametern zwischen Funktionsaufrufen, ohne dass der Anwender diese Parameterübergabe ohne Weiteres sehen kann. Meine Forschung ergab, dass es sich wahrscheinlich um ein relevantes Problem handelt, ohne dies empirisch belastbar  --- abgesehen von den Schilderungen eines betroffenen Anwenders --- belegen zu können. Dieses Problem zu erforschen erscheint mir außerordentlich sinnvoll, da es in jeder auf imperativer Programmierung basierenden API auftreten kann.
+
+In Bezug auf die API-Usability ist das Konzept der \code{apiua://code/-9223372036854775328} interessant. Es beschreibt, inwiefern Probleme, auch bei wiederholtem Auftreten, Schwierigkeiten beim Anwender verursachen. Persistente Probleme haben also eine höhere Fatalität als weniger persistente Probleme. Zur Erforschung der Persistenz bieten sich Langzeitbeobachtungen an. Die Persistenz der folgenden Probleme erachte ich für besonders interessant:
+\begin{itemize}\itemsep1pt\parskip0pt\parsep0pt
+  \item[\codebullet{apiua://code/-9223372036854774846}] \codetext{apiua://code/-9223372036854774846}
+  \item[\codebullet{apiua://code/-9223372036854775057}] \codetext{apiua://code/-9223372036854775057}
+  \item[\codebullet{apiua://code/-9223372036854775448}] \codetext{apiua://code/-9223372036854775448}
+  \item[\codebullet{apiua://code/-9223372036854775352}] \codetext{apiua://code/-9223372036854775352}
+\end{itemize}
+
+Für eine Langzeitbeobachtung, welche ich bereits technisch realisiert habe, muss sichergestellt werden, dass die betrachteten Usability-Probleme nicht durch grobe Usability-Probleme überschattet werden. In Bezug auf SeqAn empfiehlt es sich daher, vorher die Maßnahme STL-Angleichung umzusetzen.
+
+Als besonders spannend haben sich \code{apiua://code/-9223372036854775413} und damit verbundene Strategien, wie die \code{apiua://code/-9223372036854775084}, herausgestellt. Nach meiner Überzeugung, stellen sie ein Schlüsselkonzept für die Usability exotischer APIs dar. Für auf Templatemetaprogrammierung und generischer Programmierung basierender APIs scheint dies zu gelten. Es wäre aufschlussreich zu erfahren, ob diese sich auch zur Erklärung der Usability von APIs eignen, die auf anderen Entwurfsentscheidungen basieren.
+
+\cite{Stylos:2007jb,clarke:DSP:2007:1080} haben drei Personas auf der Grundlage der Eigenschaft \code{apiua://code/-9223372036854775600} vorgestellt. Ich konnte damit im Zusammenhang stehende Strategien beobachten. Dazu gehören insbesondere das systematische \code{apiua://code/-9223372036854775163}, das pragmatische \code{apiua://code/-9223372036854775372} und das opportunistische \code[apiua://code/-9223372036854775508]{Blinde Kopieren}. Diese weiter empirisch zu erforschen und Empfehlungen für den Entwurf von APIs und den dazugehörigen Dokumentationen vorzuschlagen, würde sowohl die \code{apiua://code/-9223372036854774824} von und die \code{apiua://code/-9223372036854775455} mit APIs verbessern.
+  
+
+\subsection{API-Usability-Evaluation}
+
+\subsubsection{Methodenvergleich}
+
+Im \sref{sec:api-usability-evaluation} habe ich einen Überblick über klassische, also aus der HCI stammende Usability-Evaluationsmethoden, die sich potentiell zur Evaluation von APIs nutzen lassen, gegeben. Weitere, explizit für die API-Evaluation geeignete Methoden sind die Concept-Maps-Methode von \citep{Tenny:2011jp}, die Methode von \cite{Grill:2012jm} und schließlich das in dieser Arbeit eingesetzte Verfahren.
+
+Leider existieren bis heute nur oberflächliche Vergleiche \citep{Beaton:2008ix,Barth:2011uh} einer Teilmenge, der von mir zusammengestellten Methoden. Eine umfassende Gegenüberstellung, welche die verschiedenen Vor- und Nachteile im Detail überprüft und vorstellt, wäre wünschenswert. Insbesondere zum Kosten-Nutzen-Verhältnis und der Art, der durch die jeweiligen Methoden erhobenen API-Usability-Probleme, gibt es nur fragmentiertes Wissen.
+
+\subsubsection{Heuristische Evaluation}
+
+Die unmittelbare Verwendung der \glslink{he}{Heuristischen Evaluation} nach \cite{Nielsen:1990bw} zur Evaluation von API-Usability wird von \cite{Beaton:2008ix} vorgeschlagen. \cite{Grill:2012jm} haben auf der Basis von \cite{zibran2008makes} 16 Heuristiken zur API-Usability-Evaluation hergeleitet und erfolgreich angewendet --- allerdings nennen die Autoren die Einschränkung, dass sich auf diese Weise keine Laufzeitprobleme finden lassen.
+
+Welches Spektrum an API-Usability-Problemen tatsächlich gefunden werden kann, ist nicht geklärt. An der Vollständigkeit der Heuristiken habe ich Zweifel, da die Herleitungsgrundlage \citep{zibran2008makes} den Anspruch der Vollständigkeit nie verfolgt hat. Etwas überspitzt kann man sagen, dass die Heuristiken von \cite{Grill:2012jm} eher pragmatisch als systematisch entwickelt wurden.
+
+Es fehlt also eine umfassende, systematische Herleitung und empirische Validierung von API-Heuristiken. Da die Anwendung solcher Heuristiken eine kostengünstige Verbesserung von API-Usability erlaubt, halte ich eine Forschung in diese Richtung für sinnvoll und lohnenswert.
+
+Eine Grundlage für dieses Vorhaben kann die Arbeit von \cite{Watson:2012es} bilden. In dieser entwickelt und validiert der Autor drei Heuristiken zur Bewertung von API-Dokumentationen. Auf den Konsistenz-Aspekt hat sich die erstaunlich wenig beachtete Studie von \cite{Correia:2010bx} konzentriert. Die darin präsentierten Ergebnisse eignen sich ebenfalls, um Heuristiken für benutzerfreundliche API-Dokumentationen zu entwickeln und damit eine Teilmenge möglicher API-Heuristiken zu bilden.
+
+\subsubsection{Cognitive Dimensions Framework}
+\label{app:cdf}
+Für die Diskussion der Usability von \acrshort{api}s eignen sich die \glslink{cd}{kognitiven Dimensionen (CD)} nach \cite{Anonymous:9HSMlhmF}.
+In den Abschnitten \ref{sec:cdf-usage-difficulties} und \ref{sec:cdf-validation-difficulties} habe ich gezeigt, dass das \gls{cdf} im Gebrauch als API-Evaluationsmethode seine Schwierigkeiten hat. Nicht ohne Grund konnte ich keine einzige vollständige Anwendung in der Literatur finden. Weiterhin habe ich im \sref{sec:api-cds} auf Mängel in der Arbeit von \cite{Anonymous:9HSMlhmF} hingewiesen.
+
+Um das \gls{cdf} als API-Evaluationsmethode einsetzen zu können, müssen noch einige Fortschritte gemacht und Einsichten etabliert werden:
+\begin{itemize}
+  \item Das \gls{cdf} ist ein Diskussionswerkzeug für die Usability von Notationen. Für die Evaluation von \acrshort{api}s wird eine klare Gebrauchsanweisung benötigt. Insbesondere Metriken zur Messung der  Notationsausprägungen entlang der verschiedenen kognitiven Dimensionen müssen entwickelt werden.
+  
+  \item Zur Auswertung der ausgefüllten generischen CDF-Fragebögen ist ein gutes Verständnis der durch die Notationsanwender gebildeten Anwendergruppen notwendig \citep{161956}. Im \sref{sec:cdf-application} und in der Arbeit von \cite{Nykaza:2002im} finden sich Belege, die zeigen, dass dieser Ansatz zu kurz greift. Vielmehr muss das Verständnis von Notation und Anwendergruppen genutzt werden, um den generischen Fragebogen entsprechend dem Kontext anzupassen. Eine Instanziierung des Fragebogens durch jeden einzelnen Befragten, wie dies \cite{161956} vorschlagen, entbehrt jeder Vernunft.
+   
+  \item Zur Diskussion und Evaluationen von APIs im Speziellen müssen Clarkes API-CDs weiterentwickelt werden. Die CDs von \cite{Green:1989wb} wurden nicht fehlerfrei in die spezielle Notationen-Klasse ``API'' überführt. So fehlen beispielsweise die CDs \textit{Fehleranfälligkeit} und \textit{Gegenüberstellbarkeit}. Existierende  Anwendungbeschreibungen der Clark'schen CDs \citep{Clarke:2003wk,clarke:2006} sind nicht detailliert bzw. transparent genug beschrieben, um sie auf die eigene Forschung übertragen zu können. Klar spezifizierte und erprobte Anwendungsinstruktionen müssen entwickelt werden. \cite{Stylos:2007jb} verwenden sogar an einer Stelle die ursprüngliche CD \textit{Diffuseness} und die daraus abgeleitete CD \textit{Work-Step Unit} von Clarke zur gleichen Zeit, was ebenfalls an der aktuellen Reife des CDF als API-Evaluationsmethode zweifeln lässt. 
+  %, was den CDF-Vollständigkeitsanspruch \citep{Green:1989wb} ad absurdum führt.
+  %\item mein Fragebogen wurden positiv bewerted \sref{sec:cdf-application}. Wegen der Instantiierung gab es keine Verständnisschwierigkeiten. BEITRAG! Vorteil mit Studie zu zeigen
+\end{itemize}
+
+\subsubsection{Taxonomien}
+
+Für die Ordnung von \code{apiua://code/-9223372036854775281} habe ich auf eine zweidimensionale Taxonomie von \cite{Stylos:2007ip} zurückgegriffen. Für die Ordnung der \code{apiua://code/-9223372036854774939} verwendete ich die sehr grobe Taxonomie von \cite{Grill:2012jm}, welche aus nur vier Kategorien besteht.
+
+Während ich bei der ersten keine Anwendungsschwierigkeiten hatte, musste ich bei der zweiten feststellen, dass diese weder meine entdeckten \code{apiua://code/-9223372036854775396}, noch die für meine \gls{gt} besonders wichtigen \code[apiua://code/-9223372036854774828]{produktbedingten Erwartungskonformitätsprobleme} berücksichtigte.
+
+Es wäre wünschenswert, über eine vollständigere Taxonomie für API-Usability-Probleme zu verfügen, um API-Evaluationen zu vereinfachen. Ein weiterer Nutzen bestünde darin, explorativ forschende Wissenschaftler im Sinne der \gls{gtm} --- das notwendige Wissen über die bewusste Verwendung von Literatur vorausgesetzt --- theoretisch zu sensibilisieren. Ein vielversprechender Ausgangspunkt bildet die Taxonomie von \cite{Khajouei:2011bm}, die augenscheinlich zwar mit grafischen Benutzeroberflächen im Hinterkopf entwickelt wurde, jedoch vergleichsweise generisch ist.
+
+
+
+
+\section{SeqAn}
+
+\subsection{Anwender}
+
+Meine bisherige Forschung beschränkte sich auf eine vornehmlich qualitative Betrachtung der Anwenderschaft von SeqAn. Für zukünftiges Usability-Engineering kann es hilfreich sein, ein besseres quantitatives Verständnis von den Anwendern zu erarbeiten, um vorhandene Ressourcen zielgerichteter für die Verbesserung von SeqAn API-Usability einsetzen zu können.
+
+\subsection{Abschluss von Usability-Verbesserungsmaßnahmen}
+
+Die Maßnahme \textit{Fail-Fast} wurde nicht vollständig umgesetzt. Es fehlt die Bereitstellung der Möglichkeit, Fehler beim Lesen von Dateien in Erfahrung bringen zu können.
+
+Außerdem wurde die Angleichung SeqAns an die STL nicht verwirklicht. Bei dieser Maßnahme handelt es sich um die einzig sehr wichtige Maßnahme, die ich im Rahmen meiner Arbeit nicht realisieren konnte. Schlüsseltechniken sind dabei das CRTP und der in C\texttt{++}11 aufgenommene \texttt{auto}-Spezifizierer.
+
+Weitere Maßnahmen, deren Umsetzung ich empfehle, sind die \textit{Inkonsistenzbeseitigung} und die \textit{Shortcuts}-Maßnahme.
+
+Ein weiteres Problem ist, dass nicht jedes in den Tutorials verwendete Code-Beispiel getestet wurde. Eigentlich werden nur Code-Beispiele eingebunden, die automatisch durch den SeqAn-CI-Server getestet werden. Dieser Automatismus hilft jedoch nicht, wenn Code-Beispiele händisch eingepflegt werden. Nicht kompilierbarer Code beeinflusst die Erlernbarkeit negativ. Ein konkretes Beispiel befindet sich im Sequences-Tutorial, in dem der nicht-kompilierbare Datentyp \mintinline{cpp}{String<AminAcid>}\footnote{\url{http://seqan.readthedocs.org/en/latest/Tutorial/Sequences.html?highlight=aminacid}} verwendet wird.
+
+Seit jeher ist die Dokumentation von SeqAn stark über mehrere Webseiten fragmentiert, was die Wahrscheinlichkeit erhöht, dass Anwender nicht auf Anhieb das finden, wonach sie suchen. Dies kann dazu führen, dass Anwender die Dokumentation nur noch vermindert nutzen \citep[vgl.][]{Jeong:kf}. Auch wenn die Verknüpfungen zwischen diesen Fragmenten verbessert wurden, bleibt das Problem bestehen. Daher empfehle ich, \href{http://www.seqan.de/}{seqan.de} zu einer zentralen Anlaufstelle für SeqAn-Anwender weiterzuentwickeln. Dabei müssen Dokumentation, Tutorials, Installationsanleitungen, etc. deutlich sichtbar und nicht mehr nur mit Hilfe von 40px kleinen Icons in der Ecke der Webseite verlinkt werden.
+
+Da die alte Dokumentation aus Revisionsgründen weiterhin online ist, konkurrieren alte und neue Dokumentation in den Suchmaschinen bei der Suche nach SeqAn-Sprachentitäten wie Funktionen. Alle nicht aktuellen Revisionen sollten daher so geändert werden, dass sie bei der Indexierung durch einen Suchmaschinen-Bot, den HTTP-Status-Code \texttt{301 Moved Permanently} mit der aktuellen Adresse zurückgeben.
+
+
+\subsection{Evaluation von Usability-Verbesserungsmaßnahmen}
+
+SeqAn wurde in die Workflow-Engine KNIME integriert. Die Usability dieser Lösung wurde noch nicht evaluiert. Soll dies geschehen, müssen insbesondere die Usability von KNIME selbst und der Paradigmenwechsel von tabellen- zu dateibasierter Datenverarbeitung evaluiert werden.
+
+Die weiter oben angeregte quantitative Betrachtung der Anwender könnte die Portierung von SeqAn nach anderen Programmiersprachen rechtfertigen. Bereits beim ersten SeqAn-Workshop gab es vereinzelte, technisch leider wegargumentierte Anregungen, SeqAn nach Python zu portieren. Dabei scheint es sich um keinen unwichtigen Wunsch zu handeln, was die teilweise Portierung SeqAns durch einen seiner Anwender zeigt \citep{Reid:R1ZT4-2v}.
+
+Seit geraumer Zeit, verfolgt das SeqAn-Team das Ziel, SeqAn zu parallelisieren und dabei auch GPUs zu nutzen. Dabei darf die Usability kein zweites Mal im Schatten des primären Ziels stehen. Ich überschaue die Auswirkungen auf die API nicht. Sollte es jedoch welche geben, empfehle ich deren Evaluation in Bezug auf die Usability.
+
+Sobald der in C\texttt{++}11 eingeführte \texttt{auto}-Spezifizierer in SeqAn verwendet wird, um die Berechnung des Typs von Funktionsrückgaben mit Hilfe von Metafunktionen entsprechend zu ersetzen, muss diese Änderung ebenfalls evaluiert werden. Sollte es beispielsweise Situationen geben, in denen auf den Gebrauch einer Metafunktion nicht verzichtet werden kann, ist es denkbar, dass das Konzept der Metafunktion noch schlechter von den Anwendern verstanden wird, als zuvor --- schließlich kommt es ja dann deutlich seltener zum Einsatz.
+
+Code-Beispiele sind ein leidiges Thema, denn sie können Defekte enthalten, müssen in großer Stückzahl vorhanden sein, eine gleichbleibende Qualität aufweisen und immer aktuell sein. Der eben genannte \texttt{auto}-Spezifizierer ist so ein Beispiel, wie schnell alle Code-Beispiele mit einem Mal überarbeitet werden müssen. Der von \cite{Buse:2012vv} vorgestellte Algorithmus zur automatischen Erzeugung von Code-Beispielen könnte Abhilfe schaffen. Ich halte es für sinnvoll, sich mit diesem Algorithmus näher zu beschäftigen und zu prüfen, mit welchem Aufwand eine Anpassung an die Templatemetaprogrammierung-basierte generische Programmierung in C\texttt{++} möglich ist.
+
+Suchergebnisse in SeqAns Dokumentation werden entsprechend ihrer Relevanz sortiert. In Anlehnung an das \textit{degree-of-interest model} \citep{Stylos:2008jt}, wäre zu überprüfen, ob in SeqAn die Relevanz von Suchergebnissen, oder überhaupt von Sprachentitäten, nicht auf eine andere visuelle Weise ausgedrückt werden könnte. \cite{Stylos:2009gc} haben eine Implementierung präsentiert, bei der u.a. die Schriftgröße einer Sprachentität, dessen Suchhäufigkeit bei Google anzeigt. Ein Vorteil an diesem Ansatz besteht darin, dass Sprachentitäten immer an der gleichen Stelle zu finden sind, denn nicht mehr die Position innerhalb einer Sortierung, sondern die Schriftgröße gibt Aufschluss über die Relevanz.
+
+Ich habe die Wirksamkeit der umgesetzten Maßnahmen lediglich argumentiert. Durch die Vielzahl der Maßnahmen wäre eine empirische Validierung wünschenswert. Der Nutzen dieses Schrittes bestünde sowohl für SeqAn, als auch für die API-Usability-Forschung.
+
+Es ist davon auszugehen, dass die voraussichtliche Aufnahme von \textit{Concepts} in den C\texttt{++}17-Sprachstandard \citep{Schmidt:2014tf} eine Reihe von durch \code{apiua://code/-9223372036854775515} und \code[apiua://code/-9223372036854775579]{generischer Programmierung} verursachten Usability-Problemen lösen wird. Grund dafür ist, dass SeqAn bereits heute Concepts einsetzt und damit seiner Zeit voraus ist. Beseitigt werden dürften \code{apiua://code/-9223372036854775396}, wie die \textit{fehlende IDE-Integration der Dokumentation}, die \code[apiua://code/-9223372036854775148]{fehlende Autovervollständigung} und die schlechte Lesbarkeit von \code{apiua://code/-9223372036854775100}. Sobald C\texttt{++}17 eine breite Unterstützung erfahren haben wird, müssen eventuell Anpassung am Dox-Format vorgenommen und die tatsächliche Behebung der vorgenannten Usability-Probleme überprüft werden.
+
+%Grundsätzlich: Doku immer scheiße, weil sie gepflegt werden muss. Häufig machen das die API-Entwickler und häufig sind sie deswegen veraltet \citep{lethbridge2003software}
+
+%Usability-Engineering muss fester Bestandteil des Entwicklungsprozesses werden, um als kommerzielle Softwarebibliothek konkurrenzfähig zu bleiben.
+
+
+
+
+
+\section{Qualitative Datenanalysewerkzeuge mit Unterstützung der GTM}
+
+% APIUA
+% - bisher nur für meine Forschung verwendet, testen bei anderen Projekten
+% - sämtliche Quellen unter \url{https://github.com/bkahlert/api-usability-analyzer}
+% - Stabilität erhöhen
+% - automatische Ermittlung von Kompiliererfolg (siehe \sref{sec:datenerhebung-probleme})
+% - Hilfe bei sehr großen \glspl{acm}, siehe \sref{sec:Datenanalyse-STL-Inkonsistenzen-vereinfachen} bzw. \fref{fig:research-gc-acm}
+
+Im \sref{sec:gtm-implementation} bin ich unter anderem auf mögliche Verbesserungen von qualitativen Datenanalysewerkzeugen eingegangen, die sich für die Forschung mit Hilfe der \gls{gtm} eignen. Der Vorschlag besteht darin, ein derartiges Werkzeug auf der Grundlage einer Meta-Ontologie zu entwickeln. Diese Meta-Ontologie bildet dabei das Schema für Ontologien, die Anwender im Rahmen ihrer Forschung mittels \gls{gtm} entwickeln. Dabei kann das Werkzeug möglicherweise dabei helfen, mittels Integritätsregeln, Widersprüche in Ontologien zu entdecken, implizites Wissen unter Anwendung von vom Forscher definierten Interferenzregeln explizit zu machen, Einsichten zu fördern, die Sorgfalt der Anwendung der \gls{gtm} und so schließlich die Qualität der resultierenden \gls{gt} zu verbessern. Von der Software bereitgestellte Umstrukturierungsoperationen, wie das Zusammenfassen/Auftrennen von Kodes oder die Verallgemeinerung/Spezialisierung von Relationen, können dabei helfen, das Theoriemodell reibungsloser, entsprechend der eigenen Analyseergebnisse zu verändern. Ich halte es für außerordentlich lohnenswert, mögliche Umstrukturierungsoperation und die Ontologie-Hypothese im Zuge weiterer Forschung in Hinblick auf ihre Effektivität und ihre Vereinbarkeit mit der \gls{gtm} zu überprüfen.
+
+Die ontologische Modellierung einer \gls{gt} hätte auch das Potential, seine maschinelle Weiterverarbeitung zu ermöglichen. Dieser Frage sollte unter Berücksichtigung der Kenntnisse zu den Themen Wissensmanagement und Wissensrepräsentation nachgegangen werden. Ein Anwendungsfall im Kleinen ist diese Arbeit, in der ich alle Elemente meiner Theorie direkt mit meinem Datenanalysewerkzeug mittels URIs verknüpft habe.
+
+Qualitative Datenanalysewerkzeuge können durch weitergehende Analysefunktionen verbessert werden. Nach meiner Kenntnis verfügt keines der existierenden Lösungen über derartige Funktionen. Eine könnte darin bestehen, theoretisches Sampling zu verbessern, indem wichtige Kodes in Hinblick auf ihre Verankerungen in den verschiedenen Datenquellen analysiert werden.
+Beispiel: \code{apiua://code/-9223372036854775633} habe ich erstmalig und am häufigsten in der Datenquelle Gruppendiskussion beobachtet.
+%(bzw. ausgeleuchtet, gefunden in Fragebögen) entdeckt
+%Kategorie \code{Funktionen}\citepurl{apiua://code/-9223372036854775237} Funktionsblock, u.a. mit Unterkonzepten \code{Fehlende Funktionskategorisierung}\citepurl{apiua://code/-9223372036854775280} und \code{Funktionszweckunerkennbarkeit}\citepurl{apiua://code/-9223372036854775279}) nur in Cognitive-Dimensions-Fragebögen entdeckt
+
+\gls{apiua} hat sich als extrem nützlich für meine Forschung erwiesen. Für die Verwendung in anderen Forschungsprojekten müssen jedoch noch weitere Datenformate unterstützt werden (insb. Videos) und die Robustheit erhöht werden. Außerdem empfiehlt sich eine Portierung von RCP\footnote{\url{http://wiki.eclipse.org/index.php/Rich_Client_Platform}} in der Version 3 zur aktuellen Version 4. Als essentielle, noch zu implementierende Funktionen haben sich die Möglichkeit der Umformung von Kodes zu Eigenschaften und die Dimensionalisierbarkeit von Relationen herausgestellt.
+
+
+
+\section{UI-Entwicklung mittels Websprachen}
+
+Die folgenden Vorschläge bewegen sich nicht auf Forschungsebene, sondern auf rein technischer Ebene, da sie ein reines Mittel zum Zweck darstellen. Dennoch erachte ich diese Vorschläge als relevante Fragestellungen, deren Erforschung sich lohnt.
+
+Viele Teile der \gls{ui} von \gls{apiua} sind programmatisch anspruchsvoll. Um den Entwicklungsaufwand gering zu halten, traf ich die Entscheidung, die umfangreiche Funktionalität moderner Webbrowser wiederzuverwenden und \gls{ui}-Elemente basierend auf den Websprachen HTML, CSS und JavaScript zu entwickeln. Der \textit{Nebula}-Browser ist dafür zuständig, die so entwickelten \gls{ui}-Elemente darzustellen (siehe \sref{sec:apiua}). Wie in \aref{sec:browser} beschrieben, hat der \textit{Nebula}-Browser allerdings auch das Potential für beliebige, auf dem \gls{swt} basierende Anwendungen, als Grundlage zu dienen. Mehrere Abschlussarbeiten des \gls{saros}-Projekt\footnote{\url{http://www.saros-project.org}} befassen sich bereits mit der Frage, ob und wie die vorhandenen \acrshort{ui}-Elemente portiert werden können, um eine \acrshort{ide}-unabhängige Benutzeroberfläche zu entwickeln. Auf diese Weise würden nicht mehr für die verschiedenen unterstützten \acrshort{ide}s separate Code-Teile gepflegt werden müssen. Im Rahmen des Seminars \textit{Beiträge zum Software Engineering} am 15.01.2015 wurde verabredet, dass der \textit{Nebula}-Browser in einem eigenständigen \gls{git}-Projekt weiterentwickelt werden soll.
+
+An dieser Stelle bietet es sich an, weiteren Projekten, die \gls{swt} einsetzen, den Nebula-Browser als Option vorzuschlagen. Eine breite Anwendung würde diese Komponente verlässlicher und noch besser für den Zweck der plattformunabhängigen \acrshort{ui}-Entwicklung machen.
+
+Es gibt bereits Anwendungen, die zu diesem Zweck ebenfalls einen Browser kapseln. Dazu gehört Vaadin\footnote{\href{https://vaadin.com}{\url{https://vaadin.com}}} --- ein Java-Framework, das auf dem Google Web Toolkit\footnote{\href{http://www.gwtproject.org}{\url{http://www.gwtproject.org}}} basiert. Es verwendet den Browser für einen grafischen Editor von auf Vaadin basierenden Benutzeroberflächen.
+
+In dieser Arbeit haben sich parallel zwei Entwicklungsansätze für die Browser-basierte \acrshort{ui}-Entwicklung herausgebildet. Die erste ist Java-zentrisch, d.h. es wird lediglich eine leere HTML-Seite geladen, die dann durch diverse JavaScript-Aufrufe zu einer \acrshort{ui}-Komponente geformt wird. Der zweite Ansatz geht von einer anwendungsspezifischen Schnittstelle zwischen Java und JavaScript aus, d.h. die gesamte Funktionalität wird in Form einer HTML-CSS-JavaScript-Seite --- also einer Webanwendung --- realisiert und lediglich in dem \textit{Nebula}-Browser eingebunden. Die Stärken und Schwächen beider Ansätze müssen besser verstanden werden.
+
+\bigskip
+
+Die in diesem letzten Kapitel vorgestellten Vorschläge, werfen eine Fülle neuer Fragen auf, die nur teilweise SeqAn-spezifisch sind. Der größere Teil hingegen umfasst sich als äußerst relevant herausgestellte, methodische, inhaltliche und technische Fragestellungen der API-Usability-Forschung im Speziellen und der softwaregestützten Forschung mit Hilfe der \gls{gtm} im Allgemeinen.
+
+\cleardoublepage

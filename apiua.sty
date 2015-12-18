@@ -1,0 +1,271 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{apiua}[2015/04/21 APIUA package]
+ 
+\RequirePackage{scrextend}
+\RequirePackage{xstring}
+\RequirePackage{xcolor}
+\RequirePackage{xifthen}
+\RequirePackage{relsize}
+\RequirePackage{hyperref}
+%\DeclareOption{blue}{\renewcommand{\wordcolour}{apiua://code/-9223372036854775515}}
+%\DeclareOption*{\PackageWarning{apiuapackage}{Unknown ?\CurrentOption?}}
+%\ProcessOptions\relax
+
+
+% Theory annotations
+\newcommand{\theorybasis}[1]{%
+  \textsuperscript{%
+  \IfBeginWith{#1}{dd}{%
+    D\kern-.1667em\lower.5ex\hbox{G}\@%
+  }{%
+    \IfBeginWith{#1}{td}{%
+      T\kern-.1667em\lower.5ex\hbox{D}\@%
+    }{%
+      D\kern-.1667em\lower.5ex\hbox{G}\kern-.0625em\lower.35ex\hbox{\&}\kern-.125emT\kern-.1667em\lower.5ex\hbox{D}\@%
+    }%
+  }%
+  }%
+}
+
+ 
+
+% Input
+\input{apiua.tex}
+
+\newcommand{\apiuaLinkPrefix}{https://rawgit.com/bkahlert/seqan-research/master/export/index.html\#}
+
+\newcommand{\apiuaLink}[2]{%
+\IfBeginWith{#1}{apiua://axialcodingmodel/0z5ANneuBKhFKJkb}{\href{https://github.com/bkahlert/seqan-research/blob/master/acm.apiua\%253A\%252F\%252Faxialcodingmodel\%252F0z5ANneuBKhFKJkb}{#2}}{%
+\IfBeginWith{#1}{apiua://axialcodingmodel/KfDWvbBWybMDxf5O}{\href{https://github.com/bkahlert/seqan-research/blob/master/acm.apiua\%253A\%252F\%252Faxialcodingmodel\%252FKfDWvbBWybMDxf5O}{#2}}{%
+\IfBeginWith{#1}{apiua://axialcodingmodel/QpPaMj4mceVnuSYI}{\href{https://github.com/bkahlert/seqan-research/blob/master/acm.apiua\%253A\%252F\%252Faxialcodingmodel\%252FQpPaMj4mceVnuSYI}{#2}}{%
+\IfBeginWith{#1}{apiua://axialcodingmodel/Yty2pVeMWuNS2BoX}{\href{https://github.com/bkahlert/seqan-research/blob/master/acm.apiua\%253A\%252F\%252Faxialcodingmodel\%252FYty2pVeMWuNS2BoX}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://diff/0meio6dzt3eo1wj7/22/sandbox\%2Fmy\_sandbox\%2Fapps\%2Fmy\_app\%2Fmy\_app.cpp}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop11/workshop2011-data-20110925/diff/0meio6dzt3eo1wj7/0meio6dzt3eo1wj7\_r00000022\_2011-09-13T12-42-17\%2B0200.diff}{#2}}{%
+\IfBeginWith{#1}{apiua://diff/2ur8t8dx88n4v6ef/5/\%2Fmy\_sandbox/\%2Ffirst\_app.cpp}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop12/workshop2012-data-20120906/diff/2ur8t8dx88n4v6ef/2ur8t8dx88n4v6ef\_r00000005\_2012-09-04T13-31-59\%2B0200.diff}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://doclog/7i0p2gnbxpw7gofj/2012-09-04T13\%3A10\%3A18.566\%2B02\%3A00\%09FOCUS\%09http\%3A\%2F\%2Fdocs.seqan.de\%2Fseqan\%2Fdev\%2FINDEX\_Page.html\%09160.45.238.220\%09-\%090\%090\%09180\%091103}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop12/workshop2012-data-20120906/doclog/7i0p2gnbxpw7gofj.doclog\#L1063}{#2}}{%
+\IfBeginWith{#1}{apiua://doclog/7i0p2gnbxpw7gofj/2012-09-04T13\%3A20\%3A23.907\%2B02\%3A00\%09TYPING-search-substring\%09http\%3A\%2F\%2Fdocs.seqan.de\%2Fseqan\%2Fdev\%2FINDEX\_Page.html\%09160.45.238.220\%09-\%090\%090\%09180\%091103}{\href{#1}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/101}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI101}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/116}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI116}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/135}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI135}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/154}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI154}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/158}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI158}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/161}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI161}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/162}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI162}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/164}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI164}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/170}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI170}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/171}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI171}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/179}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI179}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/180}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI180}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/187}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI187}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/192}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI192}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/14}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI14}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/15}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI15}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/19}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI19}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/23}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI23}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/27}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI27}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/30}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI30}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/32}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI32}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/58}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI58}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/59}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI59}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/60}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI60}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/63}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI63}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/69}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI69}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/70}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI70}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/71}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI71}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/73}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI73}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/75}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI75}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/78}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI78}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/83}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI83}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/84}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI84}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/88}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI88}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/98}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI98}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/99}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI99}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/1}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI1}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/4}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI4}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/6}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI6}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/7}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI7}{#2}}{%
+\IfBeginWith{#1}{apiua://groupDiscussion/workshop\%2712+-+Interview+Gruppendiskussion+\%282012-09-06T13-01-28\%2B0200\%29.html/li/9}{\href{https://rawgit.com/bkahlert/seqan-research/master/raw/workshop12/workshop2012-data-20120906/group-discussions/workshop'12\%20-\%20Interview\%20Gruppendiskussion\%20(2012-09-06T13-01-28+0200).html\#LI9}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17-45-54.88891500+0200/questionnaire}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-45-54.88891500\%2B0200.xml\#L34}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17-46-05.89001200+0200/questionnaire}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-05.89001200\%2B0200.xml\#L37}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17-50-13.42530400+0200/questionnaire}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L30}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:35:54.335+02:00/understandingPercentageTime}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-35-54.33460000\%2B0200.xml\#L15}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:41:31.929+02:00/hardMentalOperations}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-41-31.92928500\%2B0200.xml\#L19}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:41:31.929+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-41-31.92928500\%2B0200.xml\#L28}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:41:31.929+02:00/prematureCommitment}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-41-31.92928500\%2B0200.xml\#L25}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:44:46.060+02:00/hardMentalOperations}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-44-46.06047700\%2B0200.xml\#L18}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:44:46.060+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-44-46.06047700\%2B0200.xml\#L27}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:45:54.889+02:00/prematureCommitment}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-45-54.88891500\%2B0200.xml\#L26}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:45:54.889+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-45-54.88891500\%2B0200.xml\#L29}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:45:54.889+02:00/roleExpressiveness}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-45-54.88891500\%2B0200.xml\#L23}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:45:54.889+02:00/workStepUnit}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-45-54.88891500\%2B0200.xml\#L18}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:05.890+02:00}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-05.89001200\%2B0200.xml}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/errorProneness}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L20}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/proficiency}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L8}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/hardMentalOperations}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L19}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L28}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/progressiveEvaluation}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L23}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/provisionality}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L24}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00/roleExpressiveness}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml\#L22}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:46:55.042+02:00}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-46-55.04209500\%2B0200.xml}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00/mainPurpose}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L10}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00/hardMentalOperations}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L19}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00/progressiveEvaluation}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L23}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00/viscosity}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L17}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00/proficiency}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml\#L8}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:13.425+02:00}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-13.42530400\%2B0200.xml}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:37.900+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-37.89996200\%2B0200.xml\#L28}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-18T17:50:37.900+02:00/provisionality}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-18T17-50-37.89996200\%2B0200.xml\#L24}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/domainCorrespondence}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L26}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/prematureCommitment}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L34}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/errorProneness}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L25}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/hardMentalOperations}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L22}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/learningStyle}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L37}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/personal}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L42}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/provisionality}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L31}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/roleExpressiveness}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L27}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/typicalProducts}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L11}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/viscosity}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L18}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/workStepUnit}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L19}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/1}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L19}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/9}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L9}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/11}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L11}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/18}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L18}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/23}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L23}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/25}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L25}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00/42}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml\#L42}{#2}}{%
+\IfBeginWith{#1}{apiua://survey/cd/2013-09-19T11:51:16.616+02:00}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop13/workshop2013-data-20130926/cd/2013-09-19T11-51-16.61646000\%2B0200.xml}{#2}}{%
+%
+\IfBeginWith{#1}{apiua://survey/2011-09-14-T15:23:17.211+02:00}{\href{https://github.com/bkahlert/seqan-research/blob/master/raw/workshop11/workshop2011-data-20110925/\_survey.csv\#L8}{#2}}{%
+%
+\href{\apiuaLinkPrefix#1}{#2}%
+}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}}%
+}}}%
+}%
+}}}%
+}%
+}}}%
+}%
+}}}}}%
+}}}%
+}}%
+}}}}}}}}}}%
+}
+%\newcommand{\apiuaLink}[2]{%
+%\IfBeginWith{xstring}{xst}{true}{false}%
+%  {\href{\apiuaLinkPrefix#1}{#2}}%
+%  {\href{\apiuaLinkPrefix#1}{#2}}%
+%}
+
+% Code Bullet
+\newcommand{\codebullet}[2][]{%
+%\def\myuri{%
+\ifthenelse{\isempty{#1}}%
+  {\IfBeginWith{#2}{apiua://}%
+% #2 = uri
+  {\codecolor{#2}\codeborderalpha{#2}\codebackgroundalpha{#2}}%
+% #2 = code name
+  {\codecolor{}\codeborderalpha{}\codebackgroundalpha{}}}%
+% #1 = uri; #2 = code name
+  {\codecolor{#1}\codeborderalpha{#1}\codebackgroundalpha{#1}}%
+%}%
+\begin{tikzpicture}%
+\tikz\draw[codecolor!\codeborderalphavalue,line width=0.2mm,fill=codecolor!\codebackgroundalphavalue] (+1ex,+1.4ex) circle (1ex);%
+\end{tikzpicture}%
+}
+
+% Code Text
+\newcommand{\codetext}[2][]{%
+\def\myname{%
+\ifthenelse{\isempty{#1}}%
+  {\IfBeginWith{#2}{apiua://}%
+% #2 = uri
+  {\codename{#2}}%
+% #2 = code name
+  {#2}}%
+% #1 = uri; #2 = code name
+  {#2}%
+}%
+\def\myhypername{%
+\ifthenelse{\isempty{#1}}%
+  {\IfBeginWith{#2}{apiua://}%
+% #2 = uri
+  {\apiuaLink{#2}{\codename{#2}}}%
+% #2 = code name
+  {#2}}%
+% #1 = uri; #2 = code name
+  {\apiuaLink{#1}{#2}}%
+}%
+\def\myfootnote{%
+\ifthenelse{\isempty{#1}}%
+  {\IfBeginWith{#2}{apiua://}%
+% #2 = uri
+  {\citepurl{#2}}%
+% #2 = code name
+  {}}%
+% #1 = uri; #2 = code name
+  {\citepurl{#1}}%
+}%
+%\,\myname\myfootnote%
+\myhypername%
+}
+
+
+
+% Code
+\newcommand{\code}[2][]{%
+\codebullet[#1]{#2}\,\codetext[#1]{#2}%
+}
+
+
+
+% Relation
+\newcommand\relation[1]{%
+  $\overrightarrow{\text{\textit{#1}}}$%
+}
+
+
+\newcommand{\rel}[3][]{%
+\def\a{%
+\ifthenelse{\isempty{#1}}
+  {#2\,$\rightarrow$\,#3}
+  {#2\,$\overrightarrow{\text{\textit{#1}}}$\,#3}%
+}%
+%\tikz[overlay]\node[fill=blue!0, draw=black!30, inner sep=2pt, anchor=text, rectangle, rounded corners=1mm]{\,\a\,};\phantom{\,\a\,}%
+\a%
+}
+
+
+\deffootnote{2em}{2em}{\thefootnotemark\ }
+
+\newcommand\citeurl[1]{%
+  \deffootnotemark{\thefootnotemark}%
+  \ Datum-\footnote{APIUA-Quelle: \apiuaLink{#1}{#1}}%
+  \deffootnotemark{\textsuperscript{\thefootnotemark}}%
+}
+
+\newcommand\citepurl[1]{%
+  \IfBeginWith{#1}{http}{%
+    \href{#1}{\raisebox{0.8ex}{\includegraphics[height=1.3ex]{Figures/openaccess.pdf}}}%
+  }{%
+    \apiuaLink{#1}{\raisebox{0.8ex}{\includegraphics[height=1.3ex]{Figures/openaccess.pdf}}}%
+  }%
+%  \textsuperscript{\apiuaLink{#1}{$\star$}}%
+%  \footnote{APIUA-Quelle: \apiuaLink{#1}{#1}}%
+}
+
+\newcommand\citepurlFootnote[1]{%
+  \footnote{APIUA-Quelle: \apiuaLink{#1}{#1}}%
+}

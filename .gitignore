@@ -1,0 +1,11 @@
+*.ai
+*.psd
+**/.texpadtmp/**
+*.aux
+*.vsd
+test.pdf
+Thesis.pdf
+*.xlsm
+uris.txt
+Nachbesserung.numbers
+search.vgrep

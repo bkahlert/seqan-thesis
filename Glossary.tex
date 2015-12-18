@@ -1,0 +1,123 @@
+\usepackage{xparse}
+\DeclareDocumentCommand{\newdualentry}{ O{} O{} m m m m } {
+  \newglossaryentry{gls-#3}{name={#5},text={#5\glsadd{#3}},
+    description={#6},#1
+  }
+  \newacronym[see={[siehe:]{gls-#3}},#2]{#3}{#4}{#5\glsadd{gls-#3}}
+}
+
+
+\newacronymstyle
+ {my-custom-style}% style name
+ {\glsentrysymbol{\glslabel}% display
+   \ifglshaslong{\glslabel}%
+   {% acronym
+      \ifglsused{\glslabel}%
+      {%
+          \glsgenacfmt%
+      }
+      {%
+          \ifdefined\printingglossary \glsgenacfmt%
+          \else \glsgenentryfmt\textsuperscript{\textsuperscript{\glslink{\glslabel}{\tiny G}}}%
+          \fi%
+      }%
+   }
+   {% not an acronym
+      \ifglsused{\glslabel}%
+      {%
+          \glsgenentryfmt%
+      }
+      {%
+          \ifdefined\printingglossary \glsgenentryfmt%
+          \else \glsgenentryfmt\textsuperscript{\textsuperscript{\glslink{\glslabel}{\tiny G}}}%
+          \fi%
+      }%
+   }%
+ }%
+ {% style definitions
+   \GlsUseAcrStyleDefs{long-short}% use the same style as 'long-short'
+ }
+
+% switch to this new style:
+\setacronymstyle{my-custom-style}
+
+\newdualentry{swt}{SWT}{Standard Widget Toolkit}{ist eine Bibliothek der Eclipse Foundation, die die native plattformunabhängige Verwendung von \acrshort{ui}-Elementen eines Betriebssystems erlaubt.}
+\newdualentry{gui}{GUI}{grafische Benutzeroberfläche}{ist die grafische Variante einer \gls{ui}}
+\newdualentry{ui}{UI}{Bedienoberfläche}{ist die Schnittstelle, durch die ein Anwender mit einem technischen System interagiert}
+\newdualentry{uri}{URI}{Uniform Resource Identifier}{ist ein Identifikator für eine Ressource}
+\newdualentry{api}{API}{application programming interface}{wird ausführlich im \sref{sec:definitions}, Seite \pageref{sec:definitions} definiert}
+\newdualentry{apiua}{APIUA}{API~Usability~Analyzer}{wird ausführlich im \sref{sec:apiua}, ab Seite \pageref{sec:apiua} besprochen}
+\newdualentry{gt}{GT}{Grounded Theory}{Ergebnis einer empirischen Studie basierend auf der \acrlong{gtm}}
+\newdualentry{gtm}{GTM}{Methode der Grounded Theory}{Eine qualitative Forschungsmethode, die - basierend auf empirisch erfassten Daten - eine \acrlong{gt} hervorbringt. Eine ausführlichere Beschreibung befindet sich im \sref{sec:gtm}.}
+\newglossaryentry{ac}
+{
+  name=axiale Kodierung,
+  plural=axiale Kodierungen,
+  description={ist das Ergebnis der Phase \textit{axiales Kodieren} basierend auf Phänomenen (vgl. \textit{\gls{acm}})}
+}
+\newglossaryentry{acm}
+{
+  name=axiales Kodiermodell,
+  plural=axiale Kodiermodelle,
+  description={ist das Ergebnis der Phase \textit{axiales Kodieren} basierend auf Kodes (vgl. \textit{\gls{ac}})}
+}
+\newdualentry{euse}{EUSE}{end-user software engineering}{(deutsch \textit{Endanwender Softwaretechnik}) bezeichnet das Gebiet der Softwaretechnik, bei dem der Entwickler sich gezwungener Maßen, also mangels Alternativen, im Bereich der Softwaretechnik bewegt. Die bekannteste Form ist der Endanwender-Programmierer (engl. \textit{end-user programmer}), der --- ohne typischerweise über eine entsprechende Ausbildung zu verfügen --- programmatisch Lösungen entwickelt}
+
+\newdualentry{he}{HE}{Heuristische Evaluation}{ist ein ursprünglich von \cite{Nielsen:1993vk} entwickelte Usability-Evaluationsmethode (siehe \sref{sec:he})}
+
+\newdualentry{cdf}{CDF}{Cognitive Dimensions Framework}{ist ein Diskussionswerkzeug, das eine gemeinsame Terminologie --- nämlich ein Dutzend so genannter kognitiver Dimensionen --- für die Diskussion über den Umgang mit Interaktions- und Kommunikationsstrukturen bereitstellt (siehe \sref{sec:cdf})}
+\newdualentry{cd}{CD}{kognitive Dimension}{ist ein integraler Bestandteil des \gls{cdf} (siehe \sref{sec:cdf})}
+
+
+\newdualentry{gpl}{GNU GPL}{GNU General Public License}{ist eine weit verbreitete Software-Lizenz, die das kostenlose Studium, die kostenlose Nutzung, Änderung und Weitergabe von Software erlaubt}
+\newdualentry{oobe}{OOBE}{Out-Of-Box-Experience}{beschreibt die ersten Erfahrungen, die ein Anwender mit einem Produkt macht. Dabei hat der Anwender --- abhängig von der Art des Produkts --- Kontakt mit Artefakten wie der Produktverpackung oder einer Installationsprozedur. Etwas ausführlicher wird dieser Begriff im \sref{sec:oobe} auf Seite \pageref{sec:oobe} behandelt}
+\newdualentry{ide}{IDE}{integrierte Entwicklungsumgebung (englisch \textit{integrated development environment})}{ist eine Sammlung von Werkzeugen, mit denen im optimalen Fall sämtliche Aufgaben der Softwareentwicklung gelöst werden können}
+\newglossaryentry{git}
+{
+  name=Git,
+  description={ist ein populärer verteiltes Versionsverwaltungssystem, das in seiner ersten Version von Linus Torvalds entwickelt wurde und unter der \gls{gpl} steht}
+}
+\newglossaryentry{github}
+{
+  name=GitHub,
+  description={ist ein populärer Onlinedienst, das die Entwicklung von Softwareprojekten ermöglicht und besonders für sein auf \gls{git} basierendes Versionsverwaltungssystem bekannt ist}
+}
+\newglossaryentry{eclipse}
+{
+  name=Eclipse,
+  description={ist eine populäres Entwicklungswerkzeug, das ursprünglich von IBM als \gls{ide} für Java entwickelt wurde}
+}
+\newglossaryentry{java}
+{
+  name=Java,
+  description={ist eine populäre objektorientierte Programmiersprache}
+}
+\newglossaryentry{c}
+{
+  name=C,
+  description={ist eine populäre, hardwarenahe und prozedurale Programmiersprache}
+}
+\newglossaryentry{cpp}
+{
+  name=C++,
+  description={ist eine \gls{c} um die Objektorientierung erweiternde Programmiersprache}
+}
+\newdualentry{rcp}{RCP}{Eclipse Rich Client Platform}{ist der Teil von Eclipse, mit denen individuelle Rich-Client-Anwendungen entwickelt werden können}
+\newdualentry{osgi}{OSGi}{OSGi Service Platform}{spezifiziert eine \gls{java}-basierte Laufzeitumgebung, die das Laden, Aktualisieren und Entladen von \gls{bundle}s erlaubt}
+\newglossaryentry{bundle}
+{
+  name=Bundle,
+  description={ist ein grundlegende Komponente der \gls{osgi} --- vergleichbar mit einem \gls{plugin}}
+}
+\newglossaryentry{plugin}
+{
+  name=Plugin,
+  description={auch Plug-In genannt, ist ein Softwaremodul, das von einer bestehenden Software geladen werden kann}
+}
+\newglossaryentry{saros}
+{
+  name=Saros,
+  description={ist ein in der Arbeitsgruppe Software Engineering, des Fachbereichs Informatik der Freien Universität Berlin entwickeltes Eclipse-\gls{plugin}, dass die gemeinsame Arbeit an Softwareprojekten erlaubt. Ein \gls{plugin} für die \acrshort{ide} \textit{IntelliJ} ist in Arbeit.\footnote{\href{http://www.saros-project.org}{\url{http://www.saros-project.org}}}}
+}
+
+\newdualentry{let}{LET}{Sprachentitätstyp}{(englisch: language entity type), siehe \sref{sec:gt-let}, ab Seite \pageref{sec:gt-let}}

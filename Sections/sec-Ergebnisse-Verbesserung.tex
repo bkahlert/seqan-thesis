@@ -1,0 +1,170 @@
+\section{Verbesserung der API-Usability von SeqAn}
+\label{sec:seqan-api-usability-verbesserung}
+
+Dieses Unterkapitel behandelt die erreichten API-Usability-Verbesserungen an Hand der im vorherigen Unterkapitel vorgeschlagenen Maßnahmen und wiederholt in sehr knapper Form die bereits in Phase 1 erläuterten Verbesserungen im Zuge der ersten Beseitigung grober Usability-Probleme.
+
+Auf Grund der im gleichnamigen \hyperref[sec:schwierigkeiten]{Abschnitt erläuterten Schwierigkeiten} (S. \pageref{sec:schwierigkeiten}) konnte ich nicht für die Umsetzung aller Maßnahmen sorgen. Ganz besonders sind dabei, neben organisatorischen Gründen wie dem Wegfall von Kollegen und meiner auf drei Jahre begrenzten Stelle, wissenschaftliche Gründe, wie den Anwendungsschwierigkeiten der \gls{gtm} und dem unerwartet aufwändigen Analysewerkzeugbau, zu nennen. Aus den damit einhergehenden zeitlichen Problemen musste ich auch die im nächsten Unterkapitel vorgestellte Validierung stark kürzen.
+
+\subsection{Prozessverbesserungen}
+
+Im Zuge der ersten Beseitigung grober Usability-Probleme habe ich in Zusammenarbeit mit der Bioinformatik-Arbeitsgruppe die folgenden Prozessverbesserungen vorgenommen, die sich wie folgt positiv auf die Usability auswirken:
+\begin{itemize}
+  \item Die Einführung standardisierter Commit-Nachrichten führte zu verständlicheren und ausführlicheren Beschreibungen der Entwicklungen an SeqAn. Dies half mir als API-Evaluator die Arbeiten an SeqAn besser nachvollziehen zu können. Augenscheinlich mag dieser Schritt unwichtig wirken. Durch die hohe Dynamik in meinem Arbeitsumfeld (insb. die vielen Akteure und die stetige Fortentwicklung von SeqAn; siehe \sref{sec:rahmenbedingungen}) war diese Verbesserung jedoch von großer Wichtigkeit für mich und wirkte sich positiv auf mein Arbeitsergebnis aus.
+  \item Die Umstellung von Subversion auf Git verbesserte den Entwicklungsprozess für die SeqAn-Entwickler, da sie nun lokale Revisionen erstellen konnten, ohne das zentrale Repository zu kompromittieren. Dieser Zugewinn an Freiheitsgraden erhöht die \textit{sequenzielle Vollständigkeit} der Entwicklungs-\textit{Arbeitsaufgabe}\footnote{Hierbei handelt es sich um Begriffe aus der Arbeitspsychologie. ``Eine Handlung ist sequenziell vollständig, wenn in ihr der gesamte Handlungszyklus abgedeckt ist, d.h. es kommt sowohl zu Zielbildungs-, Planungs- und Ausführungsprozessen als auch zu Kontrollprozessen.'' \citep{Bamberg:2011tv}} und damit die Wahrscheinlichkeit einer höheren Softwarequalität. Ich gehe nicht davon aus, dass ein Zugewinn an Softwarequalität zu einer Verschlechterung der API-Usability führt --- eher im Gegenteil.
+  \item Die Einführung von Code-Reviews als Instrument der Qualitätssicherung verbessert ebenfalls die Softwarequalität.
+\end{itemize}
+
+Weitere Details können im \sref{sec:phase1} nachgelesen werden.
+
+
+
+\subsection{Frameworkumbau}
+
+SeqAn wurde erfolgreich von einem Framework zu einer Library umgebaut. Die SeqAn-Entwickler haben sämtliche Vorwärtsdeklarationen beseitigt. Fortan ist es möglich, SeqAn sowohl als Framework als auch als Library zu verwenden. Für Letzteres gibt es eine eigene Anleitung, die in allen Installationsanleitungen verlinkt ist\footnote{\url{http://seqan.readthedocs.org/en/latest/BuildManual/IntegrationWithYourOwnBuildSystem.html}}.
+
+In Folge gibt es nun auch keine Abhängigkeiten mehr zum CMake-Build-System, der Anwender dazu zwingen könnte, den eigenen Build-Prozess umzustellen.
+
+
+
+\subsection{STL-Angleichung}
+
+\subsubsection{Curiously Recurring Template Pattern --- CRTP}
+
+Ich habe das CRTP einigen SeqAn-Entwicklern zu einer Zeit präsentiert, in der ich noch in dem Glauben war, SeqAns Anwender würden eine streng objektorientierte Library erwarten. Dies entsprach zum Einen nicht den Tatsachen, denn ein großer Teil erwartete lediglich eine STL-konforme Softwarebibliothek. Zum Anderen stieß ich mit diesem Vorschlag auf Ablehnung. Ich hatte den Eindruck, dass die Idee, die SeqAn-API zu einer reinen OOP-API umzustrukturieren, für die SeqAn-Entwickler ein zu radikaler Schritt wäre.
+
+Aus zeitlichen Gründen kam ich nicht mehr dazu, dem SeqAn-Team meinen neuen Erkenntnisstand mitzuteilen.
+
+Die in \sref{sec:stl-inconsistencies} beschriebenen Beobachtungen lassen erwarten, dass die Umwandlung von in SeqAn globalen Funktionen, die in C\texttt{++} als Memberfunktionen implementiert wären, eine äußerst positive Auswirkung auf die Usability haben wird.
+
+\subsubsection{Metafunktionen}
+
+Metafunktionen werden in der SeqAn-API vornehmlich zur Berechnung von Rückgabetypen verwendet, was --- obwohl Gogol-Döring damit eine Verbesserung der Usability beabsichtigte --- tatsächlich eine Verschlechterung selbiger (siehe \code{apiua://code/-9223372036854775352}-Problem) verursachte.
+
+Dieser Anwendungsfall ist durch das \texttt{auto}-Schlüsselwort im neuen C\texttt{++}-Sprachstandard obsolet geworden, was auch die Dynamik meines Forschungsvorhabens unterstreicht (vgl. \sref{sec:schwierigkeiten}). Mittels \texttt{auto} wird der Compiler angewiesen, den Datentyp selbstständig herzuleiten. Auf diese Weise würde man statt \mintinline{cpp}{Row<Align<String<Dna>, ArrayGaps>>::Type &row1 = row(align, 0);} nur noch \mintinline{cpp}{auto &row1 = row(align, 0);} schreiben müssen.
+
+\subsection{KNIME als API-Endanwender-Werkzeug}
+
+Während die STL-Angleichung die bestehende SeqAn-API an die Erwartung von C\texttt{++}-geprägten API-Anwendern annähern soll, geht es bei der Wrapper-API darum, eine zweite, speziell auf die Bedürfnisse von API-Endanwendern angepasste API zu entwickeln. Die Bereitstellung von SeqAn-Programmen innerhalb der Workflow-Engine KNIME war eines der Ziele des BioStore-Projekts (siehe Abschnitte \ref{sec:rahmenbedingungen}). Dieses Ziel haben die Bioinformatik-Arbeitsgruppe und ich wie folgt erreicht:
+\begin{enumerate}
+  \item KNIME-Anpassungen
+  \begin{enumerate}
+    \item[1.] Das von der Universität Tübingen entwickelte \textit{Common Tool Description (CTD)} Format wurde weiterentwickelt und erlaubt nun eine mächtige Beschreibung der Schnittstelle von Kommandozeilenprogrammen. Beschreibungsmöglichkeiten umfassen u.a. typisierte Argumente und Wertebereiche (vgl. \sref{sec:argument-parser}).
+    \item[2.] Das ebenfalls ursprünglich an der Universität Tübingen entwickelte \textit{Generic KNIME Nodes}, wurde unter dem Namen \textit{Generic Workflow Nodes}\footnote{\url{https://github.com/genericworkflownodes}} weiterentwickelt. Es kann, unter Verwendung von CTD-Dateien, die entsprechenden Kommandozeilenprogramme als KNIME-Knoten kapseln. Diese können dann über das Internet für alle KNIME-Anwender bereitgestellt werden.
+  \end{enumerate}
+  \item SeqAn-Anpassungen
+  \begin{enumerate}
+    \item[1.] Es wurde ein neuer Parser für Argumente implementiert (siehe \sref{sec:argument-parser}).
+    \begin{itemize}
+      \item Der Argument-Parser ist Bestandteil der SeqAn-API und bietet mächtige Funktionen zur Beschreibung von Kommandozeilenprogrammschnittstellen.
+      \item Ein Argument-Parser verwendendes SeqAn-Programm kann seine eigene Schnittstellenbeschreibung als CTD-Datei exportieren.
+      \item Sämtliche SeqAn-Anwendungen (siehe \sref{sec:seqan-tools}) wurden an den Argument-Parser angepasst und verwenden diesen nun.
+    \end{itemize}
+    \item[2.] Die kontinuierliche Integration (engl. \textit{continuous integration --- CI}) wurde angepasst.
+    \begin{itemize}
+      \item Der SeqAn-CI-Server generiert nun für alle SeqAn-Anwendungen CTD-Dateien.
+      \item Die SeqAn-Anwendungen werden mit Hilfe der CTD-Dateien und der Generic Workflow Nodes Anwendung zu KNIME-Knoten gepackt.
+      \item Die SeqAn-KNIME-Knoten\footnote{\url{https://tech.knime.org/seqan-nodes-for-knime}} werden auf den Community-Server von KNIME hochgeladen und stehen damit allen KNIME-Anwendern zu Verfügung\footnote{\url{http://seqan.readthedocs.org/en/master/HowTo/UseSeqAnNodesInKnime.html}}.
+    \end{itemize}
+    \item[3.] Analog zu SeqAn-Code-Beispielen, wurden beispielhafte Workflows entwickelt\footnote{\url{https://github.com/seqan/knime_seqan_workflows}}, die in KNIME importiert werden können.
+  \end{enumerate}
+\end{enumerate}
+
+Die SeqAn-Anpassungen erlauben es darüber hinaus SeqAn-Anwendern KNIME-Knoten aus ihren selbst entwickelten SeqAn-Anwendungen zu generieren.\footnote{\url{http://seqan.readthedocs.org/en/latest/HowTo/GenerateSeqAnKnimeNodes.html}}
+
+Das Ergebnis besteht darin, dass KNIME-Anwender nun grafisch mit SeqAn arbeiten können. Dazu können SeqAn-Anwendungen in Form von Knoten auf einer KNIME-Arbeitsfläche platziert, verbunden und konfiguriert werden (siehe Abbildungen \ref{fig:knime-example} und \ref{fig:knime-config}). Auf diese Weise können API-Endanwender SeqAn-Workflows entwickeln, ohne eine einzige Zeile Code schreiben zu müssen.
+
+\begin{figure}
+  \centering
+    \includegraphics[width=1\linewidth]{Figures/knime-example.png}
+  \caption{Beispiel-SeqAn-Workflow in KNIME}
+  \label{fig:knime-example}
+\end{figure}
+
+\begin{figure}
+  \centering
+    \includegraphics[width=0.65\linewidth]{Figures/knime-config.jpg}
+  \caption{KNIME-Konfigurationsdialog für einen CTD-basierten Knoten}
+  \label{fig:knime-config}
+\end{figure}
+
+
+
+\begin{comment}
+\subsection{Intransparenzbeseitigung}
+
+Die Fatalität des Problems der \code[apiua://code/-9223372036854775057]{versteckten Parameterübergabe} ist nicht hinreichend verstanden, um aktuell den SeqAn-Entwicklern die Problembeseitigung zu empfehlen.
+\end{comment}
+
+
+\subsection{Inkonsistenzbeseitigung}
+\label{sec:Inkonsistenzbeseitigung}
+
+Die Probleme \code{apiua://code/-9223372036854775116}, \code{apiua://code/-9223372036854774846} und \code{apiua://code/-9223372036854774861} wurden mit den SeqAn-Core-Entwicklern besprochen. Jedoch kam es nicht zu einer konkreten Planung zur Umsetzung dieser Maßnahme, was zwei Gründe hatte:
+\begin{itemize}
+  \item Zum Zeitpunkt der Vorstellung meiner Ergebnisse waren meine Lösungsvorschläge nicht konkret genug.
+  \item Meine Kollegen verfolgten während der BioStore-Projektzeit genauso eigene Ziele, wie ich das mit der API-Usability-Erfoschung tat. Nach meiner Einschätzung des Standpunktes der SeqAn-Entwickler stand der Nutzen dieser Maßnahme in keinem guten Verhältnis zu den Kosten.
+\end{itemize}
+
+
+
+\subsection{Shortcuts}
+
+Während des BioStore-Projekts, das vor einem knappen Jahr endete, konnte ich die Sensibilität für die mit den Shortcuts einhergehenden Probleme auf Seiten der SeqAn-Entwickler erhöhen. Jedoch waren meine damaligen Lösungsansätze nicht hinreichend fundiert, um die SeqAn-Entwickler zu einer Lösung der Probleme \code{apiua://code/-9223372036854774861} und \code{apiua://code/-9223372036854774860} zu bewegen.
+
+
+
+\subsection{Fail-Fast}
+
+Diese Maßnahme bestand aus zwei Schritten:
+\begin{enumerate}
+  \item Dass es Funktionen wie \texttt{length} gibt, die bei bestimmen Eingaben ungültige Rückgaben liefern, war einigen SeqAn-Entwicklern unabhängig von meinen Forschungsergebnissen bekannt. Der Entwickler Manuel Holtgrewe erachtete deren Korrektur ebenfalls für sinnvoll. Aktuell ist dieser Schritt noch nicht umgesetzt.
+  \item Die Einschätzung, dass Leseoperationen Ausnahmen werfen müssen, wenn es zu einem Lesefehler kommt, teilten anfangs nur sehr wenige SeqAn-Entwickler aus Angst, SeqAn würde dadurch langsamer arbeiten. Die Notwendigkeit dieser Maßnahme und dessen Vereinbarkeit mit dem SeqAn-Entwurfsziel \textit{Performance} mittels \textit{Tags} fand zunehmend Zustimmung. Allerdings ging diese Maßnahme in den letzten Projektmonaten --- insbesondere aus Zeitgründen bei allen Beteiligten --- unter. Die Beseitigung steht also noch aus.
+\end{enumerate}
+
+
+
+
+\input{Sections/sec-Dox}
+
+
+\subsection{Kollaborationsplattform}
+
+Im Zuge der Umstellung des Versionsverwaltungssystems von Subversion auf Git wurde von einer selbst gehosteten Lösung auf \textit{GitHub}\footnote{\url{https://github.com}} umgestellt. Diese Plattform bietet einen \textit{Issue-Tracker}\footnote{\url{https://github.com/seqan/seqan/issues}}, der von SeqAn-Anwendern sehr gut angenommen und von SeqAn-Entwicklern aktiv verwaltet wird. Auf dieser Plattform findet ein fruchtbarer Austausch zwischen Anwendern und Entwicklern statt\footnote{Beispiel: \url{https://github.com/seqan/seqan/issues/919}}. 
+
+
+\begin{comment}
+\subsection{Werkzeugunterstützung}
+
+Den Algorithmus zur automatischen Erzeugung von Code-Beispielen von \cite{Buse:2012vv} habe ich aus Zeitgründen nicht den SeqAn-Entwicklern vorstellig machen können.
+\end{comment}
+
+
+
+\subsection{Usability-Priorisierung}
+
+Die gesamtheitliche Erforschung der Entwicklung der SeqAn-Library brachte erst spät die trivial erscheinende Erkenntnis, dass es Gründe für die besondere Betonung der Performance gab und erst die kommerzielle Verbreiterung des SeqAn-Einsatzzweckes zu einer notwendigen Neugewichtung der Usability führt bzw. führen muss.
+
+Mit dieser Arbeit liefere ich belastbare Argumente für meine Theorie, die dem SeqAn-Entwicklungsteam dabei helfen sollen, diesen Perspektivwechsel wahrzunehmen und eine verstärkte Betonung der Usability in Form von expliziten-empirischen Entwurfsentscheidungen zu fördern. Diese Einsicht auf Entwicklerseite würde mittelfristig zu einer ganzheitlichen Verbesserung der API-Usability von SeqAn führen.
+
+
+
+\subsection{Zusammenfassung}
+
+Für die Verbesserung der API-Usability von SeqAn haben die Bioinformatik-Arbeitsgruppe und ich umfangreiche Maßnahmen umgesetzt.
+
+Neben den aus der ersten Verbesserungsiteration stammenden Prozessverbesserungen, konnten meine SeqAn-Kollegen und ich drei der vier wichtigsten Maßnahmen vollständig bearbeiten:
+\begin{enumerate}
+  \item SeqAn kann nun auch als Library verwendet werden, indem insbesondere Vorwärtsdeklarationen beseitigt wurden. So simpel dieser Punkt klingen mag, so fundamental war er auch für potentielle SeqAn-Anwender, die ihren bestehenden Build-Prozess nicht anpassen wollten oder konnten. 
+  \item Die Dokumentation wurde technisch neu entwickelt und inhaltlich überarbeitet. Dazu wurde das neue Dokumentationsformat Dox entwickelt, ein Gesamtüberblick erarbeitet sowie Seitenaufbau, Beispiele, Suchfunktion, Darstellung und die Integration verbessert. Außerdem wurde das Konzept der Sprachentitätstypen gesamtheitlich innerhalb der Dokumentation implementiert. Ergänzt wird die Verbesserung der Dokumentation durch die bereits in der ersten Verbesserungsiteration generalüberholten Installationsanleitungen und Tutorials.
+  \item SeqAn kann nun von API-Endanwendern genutzt werden. Dazu wurde eine Wrapper-API in Form einer Integration in die Workflow-Engine KNIME implementiert.% Zu diesem Zweck wurde ein neuer Argument-Parser entwickelt, der explizierte Schnittstellenbeschreibungen von SeqAn-Anwendungen in einem definierten Format ausgeben kann. Diese Beschreibungen dienen wiederum dem ebenfalls weiterentwickelten Generic Workflows Nodes Werkzeug als Eingabe zur Generierung von KNIME-Knoten, die ein automatisierter Prozess allen KNIME-Anwendern zur Verfügung stellt. 
+\end{enumerate}
+
+Außerdem abgeschlossen wurde die Einrichtung einer Kollaborationsplattform --- in Form eines GitHub Issue-Trackers --- für den Austausch zwischen SeqAn-Entwicklern und -Anwendern.
+
+Aus diversen, insbesondere Zeitgründen konnte ich leider nicht darauf hinwirken, dass die wichtige STL-Angleichung in Angriff genommen wurde. Zwar sind Metafunktionen zur Berechnung von Rückgabetypen, wegen des in C\texttt{++}11 eingeführten \texttt{auto}-Schlüsselworts theoretisch nicht mehr nötig, was die mit dieser Maßnahme in Verbindung stehenden Usability-Probleme teilweise entschärft. Dies muss jedoch noch praktisch gezeigt werden. Im Erfolgsfall müssen außerdem sämtliche Lernressourcen entsprechend angepasst werden. Diese Entwicklung hat jedoch keinen Einfluss auf meine dringende Empfehlung, das CRTP einzusetzen, um die globalen Funktionen zu Memberfunktionen zu refaktorisieren, die auch in C\texttt{++} als Memberfunktionen implementiert sind.
+
+Ebenfalls aus Zeitgründen konnten die Maßnahmen Inkonsistenzbeseitigung, Shortcuts und die Evaluation des Code-Beispiel-Erzeugungs-Algorithmus nicht umgesetzt werden.
+
+Das dem der Maßnahme Intransparenzbeseitigung zu Grunde liegende Usability-Problem \code[apiua://code/-9223372036854775057]{versteckte Parameterübergabe} ist in Bezug auf seine Fatalität nicht hinreichend gut verstanden, weshalb ich die Umsetzung der Maßnahme angesichts der hohen Kosten momentan nicht empfehlen kann.
+
+Die Umsetzung der abstrakten Maßnahme Usability-Priorisierung ist längst nicht abgeschlossen und soll durch diese Arbeit motiviert werden.

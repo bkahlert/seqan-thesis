@@ -1,0 +1,65 @@
+\section{Überblick}
+\label{sec:Historie}
+
+Dieser Abschnitt gibt einen Überblick über die verfügbare, für API-Usability relevante Literatur. In den übrigen Abschnitten dieses Kapitels gehe ich auf eine Reihe der hier genannten Arbeiten genauer ein.
+
+\subsection{Grundlagen}
+
+Bevor von API-Usability die Rede war, fand bereits Forschung statt, derer sich die relativ neue Disziplin mehr oder minder explizit bedient.
+
+\subsubsection{Programmverständnis}
+
+Dabei sind die Arbeiten im Bereich der Programmverständnisforschung zu nennen. \cite{BenShneiderman:gn} kritisierten bereits, dass sich die bisherige Forschung nur auf spezielle Aspekte des Programmierprozesses konzentrierte und unter anderem den Prozess des \textit{Programmverstehens} ignorierte. Die späteren Arbeiten zum \textit{Top-Down}- \citep{Brooks:1983fj} und zum \textit{Bottom-Up}-Vorgehen \citep{Pennington:1987dc} griffen beide zu kurz und wurden von \cite{Shaft:1998tc} in Einklang gebracht. \cite{LaToza:2007fj} stellen ein alternatives Verständnismodell vor.
+
+\subsubsection{Klassische Usability}
+
+Der zweite verwandte Bereich ist die bereits gut erforschte klassische Usability. Sie bietet eine Reihe von Evaluationsmethoden, wie \textit{GOMS} \citep{Card:1983:PHI:578027}, \textit{EVADIS II} \citep{Oppermann1992Evalu-26396}, das \textit{Cognitive Walkthrough} \citep{Wharton:1994to}, die \textit{\gls{he}} \citep{Nielsen:1990bw} samt Erweiterungen \citep[u.a.][]{Sarodnick:2006vc} und den \textit{Usability-Test} \citep{Faulkner:2003wn}. Mit dem Zusammenspiel der beiden letztgenannten Methoden befasst sich \cite{Fu:2002tp}. Die Bücher von \cite{Sarodnick:2006vc,Nielsen:2005uv} bieten einen hervorragenden Einstieg in die Materie.
+
+Neben den ``üblichen Verdächtigen'' gibt es noch den Exoten \textit{Cognitive Dimensions Framework} \citep{Green:1989wb,AnIntroductiontot:1996ux}. Dabei handelt es sich nicht um eine Evaluationsmethode, sondern um ein Diskussionswerkzeug für Notationen im Allgemeinen. \cite{161956} haben auf ihrer Grundlage einen an Notation-Anwender gerichteten Fragebogen zur Datenerhebung entwickelt.
+
+\subsubsection{Adaptionen}
+
+Einige Verfahren aus dem Bereich der klassischen Usability wurden auch für die Evaluation der API-Usability verwendet. Dazu gehört das \textit{Think-Aloud}-Protokoll \citep{Beaton:2008ix,Stylos:2007jb,Ellis:2007kv}.
+
+Die \gls{he} wurde gleich auf verschiedene Art und Weise zu diesem Zweck genutzt. Die ursprüngliche Version nach \cite{Nielsen:1990bw} wird in ihrer Anwendung zur API-Evaluation von \cite{Beaton:2008ix} diskutiert. Weiterhin gibt es den Versuch, API-spezifische \citep{Grill:2012jm} wie auch API-Dokumentations-spezifische \citep{Watson:2012es} Heuristiken zu entwickeln. Eine grundlegende Arbeit existiert von \cite{Correia:2010bx}. Das Cognitive Walkthrough für die API-Usability-Evaluation wird von \cite{Beaton:2008ix} diskutiert.
+
+Für das Cognitive Dimensions Framework existiert ein Fragebogen, welcher der Evaluation von \glslink{api}{APIs} dient \citep{Kadoda:2000vj}. Eine weitere Arbeit \citep{Anonymous:9HSMlhmF} präsentiert die Adaption des Cognitive Dimensions Framework auf APIs. Erläuterungen zu deren Anwendung für die API-Usability-Evaluation existieren \citep{Clarke:2003wk,Clarke:2004te,clarke:2006}, wurden aber nur in wenigen Fällen \citep{roast2000formal,carroll2003hci,Piccioni:2013uq} genutzt.
+
+Bis heute wird der klassischen Usability eine weitaus größere Aufmerksamkeit geschenkt, als der API-Usability \citep{Grill:2012jm}.
+
+\subsection{API-Usability}
+
+Auf dem Feld der API-Usability-Forschung selbst wurde die Pionierarbeit insbesondere von \cite{Rosson:1996da} geleistet \citep{Robillard:2010bh}. Diese empirische Arbeit studiert die beobachteten Wiederverwendungsstrategien von API-Anwendern zum Erlernen einer API für die Implementierung von grafischen Benutzeroberflächen in SmallTalk. Eine ähnliche Studie \citep{Shull:2000fy} für C++ existiert ebenfalls. \cite{McLellan:1998cu} untersuchen eine kommerzielle API, die von professionellen Entwicklern genutzt wird.
+
+Ein wichtiger benachbarter Forschungsbereich ist die \textit{Endanwender-Softwaretechnik} (engl. \textit{end-user software engineering}, kurz: EUSE), bei welcher der Entwickler kein professioneller Entwickler ist, sondern ``gezwungener Maßen'' programmieren muss und sich softwaretechnischer Disziplinen ausgesetzt sieht. Eine hervorragende wissenschaftliche Literaturstudie existiert von \cite{Ko:2011el}. \cite{AndrewJKo:2004df} untersuchen in diesem Bereich generische Barrieren, auf die Endanwender beim Erlernen einer API treffen.
+
+Die Komplexität des Programmierprozesses selbst wird von \cite{Daughtry:2009be,Sarodnick:2006vc} und bezüglich der API-Verwendung von \cite{Bruch:2006bv} thematisiert. Abstrakte Aktivitäten beim Gebrauch von APIs werden von \cite{Stylos:2009ts} beschrieben.
+Dabei wird die Strategie der \textit{Verständnisvermeidung} \citep{Lange:1989jr,Stylos:2008jt}, das \textit{Vocabulary Problem} \citep{Good:1984kr,Furnas:1987hl}, wie auch das Lernen mittels \textit{Beacons} beschrieben. Wiederverwendung wird in der Literatur in Bezug auf die \textit{Implementierungswiederverwendung} \citep{Lange:1989jr}, die \textit{Anwendungswiederverwendung} \citep{Rosson:1996da,Fairbanks:2006jw} und in Bezug auf Endanwender \citep{Ko:2005cl} erforscht.
+
+Für den konkreten Entwurf von APIs gibt es Erkenntnisse zu Konstruktoren im Allgemeinen \citep{Zibran:2011fx}, aber auch im Vergleich zur Fabrikmethode \citep{Ellis:2007kv} und zum \textit{create-set-call}-Muster \citep{Stylos:2007jb}. Die Klassenzugehörigkeit von Methoden \citep{Stylos:2008jt} ist genauso wie die Typisierung der gewählten API-Sprache \citep{Mayer:2012kl} Gegenstand der Forschung. \cite{Schmidt:br,Roberts:1997tt} beschäftigen sich mit der Kapselung in APIs. Einen breiten Überblick zum Thema API-Entwurf bietet \cite{Zibran:2011fx}.
+
+Zahlreiche Arbeiten beschäftigen sich mit der Dokumentation von APIs. Eine umfassende Feldstudie \citep{Robillard:2010bh} zum Erlernen von APIs, belegt, dass die schwerwiegendsten Usability-Probleme in der API-Dokumentation zu finden sind. Eine Fülle von Dokumentations-Aspekten wie  
+\textit{API-Direktiven} \citep{dekel2011increasing,Monperrus:2011bf}, Wartung \citep{DaqingHou:2005ba,Shi:2011tb}, Benennung \citep{Aguiar:2000dn,Stylos:2009gc,Blinman:2005wr,cwalina2008framework,Teasley:1994gr,Bloch:2006jk}, Aufbau und Darstellung \citep{DaqingHou:2005ba,Jeong:kf}, Zielgruppenspezifität \citep{Fairbanks:2006jw,Ko:2011vw,Pugh:Ks4cicwp,Nykaza:2002im}, Tutorials \citep{Nykaza:2002im}, Beispiele \citep{Tenny:1988ir,Jeong:kf,DaqingHou:2005ba,Shull:2000fy} und die Bedeutung von Webinhalten als Alternative zu API-Dokumentationen \citep{Parnin:2011kp,Stylos:2006gu} wurden untersucht.
+
+Die Arbeit von \cite{Stylos:2007ip} stellt Qualitätsfaktoren von APIs vor. Wichtige Erkenntnisse bezüglich der Wichtigkeit, die Zielgruppe gut zu verstehen \citep{Nykaza:2002im}, führten schließlich zur Entwicklung von drei, speziell im API-Umfeld gebräuchlichen \textit{Personas} \citep{Stylos:2007jb,clarke:DSP:2007:1080} als Möglichkeit, grob Anwendergruppen umschreiben zu können.
+
+\subsubsection{API-Usability-Evaluation}
+
+API-spezifische Evaluationsmethoden basieren auf \textit{Guidelines}, wie die für Java \citep{bloch2008effective}, C++ \citep{meyers1998effective} oder der STL \citep{Meyers:2001uz}.
+\cite{OCallaghan:2010iv} hingegen stellen das \textit{API-Walkthrough} und \cite{UmerFarooq:2010tt,SIGCHI:2009up,Farooq:2010iv} das \textit{API (Usability) Peer Review} vor. \textit{Metrix} \citep{deSouza:ek} wiederum ist eine objektiv-summative Evaluationsmethode. Ein weiteres Verfahren besteht im Gebrauch von Textanalysetechniken \citep{Watson:2009bm}.
+
+Besonders interessant sind die folgenden Studien, die allesamt eine Mischung verschiedener Methoden zur API-Usability-Evaluation und --- bis auf eine Ausnahme \citep{Piccioni:2013uq} --- auch zur API-Usability-Verbesserung einsetzen. Zu diesen Verfahren gehören das \textit{Concept-Maps}-Verfahren \citep{Tenny:2011jp} und die leider in der Forschung bisher vollkommen ignorierte Methode von \cite{Grill:2012jm}. Eine andere Arbeit \citep{Letondal:2006dy} stellt die partizipatorische Entwicklung einer integrierten Entwicklungsumgebung für Bioinformatiker vor. Die Arbeit von \cite{Stylos:2008cu} beschreibt eine Anwendergruppen-spezifische API-Usability-Verbesserung.
+
+\subsubsection{API-Werkzeuge}
+
+Zahlreiche Forschungsergebnisse sind in Form prototypischer Anwendungen veröffentlicht worden.
+
+Zu den Werkzeugen, die sich an API-Entwickler wenden, gehört ein Assistent zur Erstellung von API-Dokumentationen \citep{Dahotre:2011vr}, eine elektronische Alternative zur klassischen API-Dokumentation \citep{Berglund:2003bs}, ein modulares Dokumentationssystem \citep{Horie:2010dq} und ein Algorithmus, der automatisch Code-Beispiele erzeugen kann \citep{Buse:2012vv}.
+
+Werkzeuge, die sich an API-Anwender und teilweise auch API-Endanwender richten, unterstützen beim Auffinden oder Verwenden von Beispielen \citep{Neal:1989ef,Ye:2002fd,Dagenais:2008kj,Wightman:2012gc,Stylos:2006gu,Oney:2012ge,Doerner:2014cm,Holmes:2005cm,Bruch:2006bv}, bei der Beachtung von API-Verwendungsregeln \citep{dekel2011increasing,Feilkas:dg,Bruch:2006bv}, oder bei der Exploration der API-Dokumentation \citep{Stylos:2009gc,Eisenberg:2010bm,Eisenberg:2010ds,Bruch:2006bv,DualaEkoko:2011th}. Wiederum andere stellen eine bessere Codevervollständigung bereit \citep{Hou:2010fd,Omar:2012tw,Zhang:2012wl}. Eine Arbeit \citep{DaqingHou:2005ba} beschreibt Kollaborationsplattformen als Ergänzung zur API-Dokumentation.
+
+Ausschließlich an API-Endanwender richtet sich eine integrierte Entwicklungsumgebung \citep{Gross:2011ie} und ein spezieller API-Endanwender-Debugger \citep{Ko:2004fc}.
+
+
+\vspace{1cm}
+Auf den folgenden Seiten werde ich eine Reihe von Studien genauer vorstellen.
